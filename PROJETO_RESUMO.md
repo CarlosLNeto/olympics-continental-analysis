@@ -247,11 +247,15 @@ jupyter notebook
 
 ---
 
-## 👤 Autor
+## 👥 Autores
 
-**Carlos Neto**  
+**Carlos Lavor Neto**  
 Engenharia de Computação - UEA  
 Ciência de Dados
+
+**Alexandro Pantoja**  
+Orientador  
+Universidade do Estado do Amazonas - UEA
 
 ---
 
