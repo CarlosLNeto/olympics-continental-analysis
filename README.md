@@ -217,8 +217,8 @@ Engenharia de Computação - UEA
 Ciência de Dados
 
 **Alexandro Pantoja**  
-Orientador  
-Universidade do Estado do Amazonas - UEA
+Engenharia de Computação - UEA  
+Ciência de Dados
 
 ---
 
