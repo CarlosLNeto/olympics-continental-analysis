@@ -1,0 +1,145 @@
+{
+  "dataset_name": "Olympics Paris 2024",
+  "fonte": "Dados oficiais das Olimpíadas de Paris 2024",
+  "url": "https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games",
+  "descricao": "Dados completos das Olimpíadas de Paris 2024, incluindo atletas, técnicos, eventos, medalhas, cronogramas e resultados por modalidade",
+  "data_coleta": "2024-09-30",
+  "periodo_cobertura": "2024",
+  "arquivos": {
+    "athletes.csv": {
+      "descricao": "Informações dos atletas participantes",
+      "campos_principais": [
+        "code - Código do atleta",
+        "name - Nome completo",
+        "name_short - Nome abreviado",
+        "name_tv - Nome para TV",
+        "gender - Gênero",
+        "country_code - Código do país (NOC)",
+        "country - Nome do país",
+        "discipline - Disciplina esportiva",
+        "birth_date - Data de nascimento",
+        "height_m - Altura em metros",
+        "weight_kg - Peso em kg"
+      ],
+      "registros_aproximados": 11000
+    },
+    "coaches.csv": {
+      "descricao": "Informações dos técnicos",
+      "campos_principais": [
+        "name - Nome do técnico",
+        "country_code - Código do país",
+        "discipline - Disciplina",
+        "event - Evento específico"
+      ],
+      "registros_aproximados": 800
+    },
+    "events.csv": {
+      "descricao": "Eventos realizados",
+      "campos_principais": [
+        "event - Nome do evento",
+        "tag - Tag identificadora",
+        "sport - Esporte",
+        "sport_code - Código do esporte"
+      ],
+      "registros_aproximados": 329
+    },
+    "medallists.csv": {
+      "descricao": "Lista de medalhistas",
+      "campos_principais": [
+        "medal_type - Tipo de medalha",
+        "medal_code - Código da medalha",
+        "medal_date - Data da medalha",
+        "athlete_name - Nome do atleta",
+        "country_code - Código do país",
+        "country - Nome do país",
+        "discipline - Disciplina",
+        "event - Evento"
+      ],
+      "registros_aproximados": 2000
+    },
+    "medals.csv": {
+      "descricao": "Medalhas por evento",
+      "campos_principais": [
+        "medal_type - Tipo de medalha",
+        "medal_code - Código",
+        "medal_date - Data",
+        "name - Nome do ganhador/equipe",
+        "gender - Gênero",
+        "country_code - Código do país",
+        "country - Nome do país",
+        "nationality - Nacionalidade",
+        "team - Equipe",
+        "discipline - Disciplina",
+        "event - Evento"
+      ],
+      "registros_aproximados": 2000
+    },
+    "medals_total.csv": {
+      "descricao": "Total de medalhas por país",
+      "campos_principais": [
+        "country_code - Código do país",
+        "country - Nome do país",
+        "gold - Medalhas de ouro",
+        "silver - Medalhas de prata",
+        "bronze - Medalhas de bronze",
+        "total - Total de medalhas"
+      ],
+      "registros_aproximados": 90
+    },
+    "schedules.csv": {
+      "descricao": "Cronogramas das competições",
+      "campos_principais": [
+        "start_date - Data/hora de início",
+        "end_date - Data/hora de término",
+        "day - Dia",
+        "status - Status do evento",
+        "discipline - Disciplina",
+        "event - Evento",
+        "venue - Local"
+      ],
+      "registros_aproximados": 2000
+    },
+    "teams.csv": {
+      "descricao": "Informações das equipes",
+      "campos_principais": [
+        "code - Código da equipe",
+        "team - Nome da equipe",
+        "discipline - Disciplina",
+        "country_code - Código do país",
+        "country - Nome do país",
+        "events - Eventos"
+      ],
+      "registros_aproximados": 800
+    },
+    "venues.csv": {
+      "descricao": "Locais de competição",
+      "campos_principais": [
+        "venue - Nome do local",
+        "url - URL"
+      ],
+      "registros_aproximados": 35
+    },
+    "results/": {
+      "descricao": "Pasta contendo resultados detalhados por modalidade esportiva (45 arquivos CSV)",
+      "modalidades": [
+        "3x3 Basketball", "Archery", "Artistic Gymnastics", "Artistic Swimming",
+        "Athletics", "Badminton", "Basketball", "Beach Volleyball", "Boxing",
+        "Breaking", "Canoe Slalom", "Canoe Sprint", "Cycling BMX Freestyle",
+        "Cycling BMX Racing", "Cycling Mountain Bike", "Cycling Road", "Cycling Track",
+        "Diving", "Equestrian", "Fencing", "Football", "Golf", "Handball", "Hockey",
+        "Judo", "Marathon Swimming", "Modern Pentathlon", "Rhythmic Gymnastics",
+        "Rowing", "Rugby Sevens", "Sailing", "Shooting", "Skateboarding",
+        "Sport Climbing", "Surfing", "Swimming", "Table Tennis", "Taekwondo",
+        "Tennis", "Trampoline Gymnastics", "Triathlon", "Volleyball", "Water Polo",
+        "Weightlifting", "Wrestling"
+      ]
+    }
+  },
+  "observacoes": [
+    "Dataset completo das Olimpíadas de Paris 2024",
+    "Inclui dados em tempo real atualizados durante e após os jogos",
+    "Primeira edição com Breaking como modalidade olímpica",
+    "Contém informações detalhadas de cronogramas e locais",
+    "Resultados separados por modalidade facilitam análises específicas"
+  ]
+}

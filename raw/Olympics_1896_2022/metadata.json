@@ -1,0 +1,107 @@
+{
+  "dataset_name": "World Olympedia Olympics 1896-2022",
+  "fonte": "Olympedia.org via Kaggle",
+  "url": "https://www.kaggle.com/datasets/piterfm/olympic-games-medals-19862018",
+  "descricao": "Dados históricos completos das Olimpíadas de 1896 a 2022, incluindo informações sobre atletas, eventos, países, jogos e medalhas",
+  "data_coleta": "2024-09-30",
+  "periodo_cobertura": "1896-2022",
+  "arquivos": {
+    "world_olympedia_olympics_athlete_bio.csv": {
+      "descricao": "Biografia dos atletas olímpicos",
+      "campos_principais": [
+        "athlete_id - ID único do atleta",
+        "name - Nome do atleta",
+        "sex - Sexo (Male/Female)",
+        "birth_date - Data de nascimento",
+        "birth_year - Ano de nascimento",
+        "height - Altura em cm",
+        "weight - Peso em kg",
+        "country - Nome do país",
+        "country_noc - Código NOC do país",
+        "description - Descrição/biografia",
+        "special_notes - Notas especiais"
+      ],
+      "registros_aproximados": 135000
+    },
+    "world_olympedia_olympics_athlete_event_result.csv": {
+      "descricao": "Resultados dos atletas por evento",
+      "campos_principais": [
+        "edition - Nome da edição dos jogos",
+        "edition_id - ID da edição",
+        "country_noc - Código NOC do país",
+        "sport - Esporte",
+        "event - Evento específico",
+        "result_id - ID do resultado",
+        "athlete - Nome do atleta",
+        "athlete_id - ID do atleta",
+        "position - Posição final",
+        "medal - Tipo de medalha (Gold/Silver/Bronze)",
+        "is_team_sport - Indica se é esporte coletivo"
+      ],
+      "registros_aproximados": 270000
+    },
+    "world_olympedia_olympics_country.csv": {
+      "descricao": "Informações dos países participantes",
+      "campos_principais": [
+        "noc - Código NOC (National Olympic Committee)",
+        "name - Nome do país"
+      ],
+      "registros_aproximados": 230
+    },
+    "world_olympedia_olympics_game.csv": {
+      "descricao": "Informações sobre cada edição dos jogos",
+      "campos_principais": [
+        "year - Ano dos jogos",
+        "edition - Nome da edição",
+        "edition_id - ID da edição",
+        "city - Cidade sede",
+        "country_flag_url - URL da bandeira do país sede",
+        "country_noc - Código NOC do país sede",
+        "start_date - Data de início",
+        "end_date - Data de término",
+        "competition_date - Datas de competição",
+        "is_held - Se os jogos foram realizados"
+      ],
+      "registros_aproximados": 60
+    },
+    "world_olympedia_olympics_game_medal_tally.csv": {
+      "descricao": "Contagem de medalhas por país e edição",
+      "campos_principais": [
+        "year - Ano dos jogos",
+        "edition - Nome da edição",
+        "edition_id - ID da edição",
+        "country - Nome do país",
+        "country_noc - Código NOC",
+        "gold - Quantidade de medalhas de ouro",
+        "silver - Quantidade de medalhas de prata",
+        "bronze - Quantidade de medalhas de bronze",
+        "total - Total de medalhas"
+      ],
+      "registros_aproximados": 5500
+    },
+    "world_olympedia_olympics_result.csv": {
+      "descricao": "Resultados detalhados dos eventos",
+      "campos_principais": [
+        "result_id - ID único do resultado",
+        "event_title - Título do evento",
+        "edition - Nome da edição",
+        "edition_id - ID da edição",
+        "sport - Esporte",
+        "result_date - Data do resultado",
+        "result_location - Local da competição",
+        "result_participants - Número de participantes",
+        "result_format - Formato da competição",
+        "result_detail - Detalhes do resultado",
+        "result_description - Descrição narrativa"
+      ],
+      "registros_aproximados": 35000
+    }
+  },
+  "observacoes": [
+    "Dataset contém informações históricas completas desde as primeiras Olimpíadas modernas em 1896",
+    "Inclui tanto Jogos de Verão quanto de Inverno",
+    "Alguns campos podem ter valores nulos para edições antigas",
+    "Códigos NOC podem ter mudado ao longo do tempo devido a mudanças geopolíticas",
+    "O arquivo athlete_bio.csv é grande (>50MB) e pode requerer Git LFS"
+  ]
+}
