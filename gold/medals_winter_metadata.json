@@ -1,0 +1,15 @@
+{
+  "nome": "Medalhas Jogos de Inverno",
+  "periodo": "1896-2024",
+  "total_paises": 46,
+  "colunas": [
+    "rank",
+    "country_noc",
+    "gold",
+    "silver",
+    "bronze",
+    "total"
+  ],
+  "fonte": "Olympedia (1896-2022) + Olympics.com (Paris 2024)",
+  "criado_em": "2025-10-01T00:30:56.023709"
+}
