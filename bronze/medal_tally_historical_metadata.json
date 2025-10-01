@@ -1,0 +1,30 @@
+{
+  "nome": "medal_tally_historical",
+  "arquivo_origem": "world_olympedia_olympics_game_medal_tally.csv",
+  "formato": "parquet",
+  "registros": 1807,
+  "colunas": [
+    "year",
+    "edition",
+    "edition_id",
+    "country",
+    "country_noc",
+    "gold",
+    "silver",
+    "bronze",
+    "total"
+  ],
+  "tipos_dados": {
+    "year": "int64",
+    "edition": "object",
+    "edition_id": "int64",
+    "country": "object",
+    "country_noc": "object",
+    "gold": "int64",
+    "silver": "int64",
+    "bronze": "int64",
+    "total": "int64"
+  },
+  "criado_em": "2025-10-01T00:17:39.233321",
+  "tamanho_mb": 0.02
+}

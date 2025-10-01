@@ -1,0 +1,16 @@
+{
+  "nome": "Informações das Edições dos Jogos (1896-2022)",
+  "fonte": "Olympedia.org",
+  "descricao": "Metadados sobre cada edição dos Jogos Olímpicos",
+  "campos_principais": [
+    "year",
+    "edition",
+    "city",
+    "country_noc",
+    "start_date",
+    "end_date"
+  ],
+  "periodo": "1896-2022",
+  "data_coleta": "2024-09",
+  "observacoes": "Informações sobre localização e datas de cada edição"
+}

@@ -1,0 +1,18 @@
+{
+  "nome": "Quadro de Medalhas por País e Edição (1896-2022)",
+  "fonte": "Olympedia.org",
+  "descricao": "Contagem oficial de medalhas por país em cada edição dos Jogos Olímpicos",
+  "campos_principais": [
+    "year",
+    "edition",
+    "country",
+    "country_noc",
+    "gold",
+    "silver",
+    "bronze",
+    "total"
+  ],
+  "periodo": "1896-2022",
+  "data_coleta": "2024-09",
+  "observacoes": "Dados oficiais históricos. Inclui Jogos de Verão e Inverno."
+}

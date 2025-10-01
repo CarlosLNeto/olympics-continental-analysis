@@ -1,0 +1,14 @@
+{
+  "nome": "Atletas Paris 2024",
+  "fonte": "Olympics.com / Paris 2024",
+  "descricao": "Lista completa de atletas participantes",
+  "campos_principais": [
+    "code",
+    "name",
+    "country_code",
+    "discipline"
+  ],
+  "periodo": "2024",
+  "data_coleta": "2024-08",
+  "observacoes": "Inclui todos os atletas credenciados"
+}

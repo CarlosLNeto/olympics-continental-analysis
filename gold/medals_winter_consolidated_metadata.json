@@ -1,0 +1,20 @@
+{
+  "nome": "Medalhas - Jogos de Inverno (1896-2024)",
+  "descricao": "Quadro consolidado de medalhas dos Jogos Olímpicos de Inverno",
+  "periodo": "1896-2024",
+  "registros": 46,
+  "colunas": [
+    "rank",
+    "country_noc",
+    "gold",
+    "silver",
+    "bronze",
+    "total"
+  ],
+  "observacoes": "Inclui Top 50 + Brasil e Cuba (mesmo com 0 medalhas).",
+  "destaque_especial": [
+    "BRA",
+    "CUB"
+  ],
+  "criado_em": "2025-10-01T00:17:40.996214"
+}

@@ -1,0 +1,16 @@
+{
+  "nome": "Quadro de Medalhas Paris 2024",
+  "fonte": "Olympics.com / Paris 2024",
+  "descricao": "Contagem oficial de medalhas por país nos Jogos de Paris 2024",
+  "campos_principais": [
+    "country_code",
+    "country",
+    "gold",
+    "silver",
+    "bronze",
+    "total"
+  ],
+  "periodo": "2024",
+  "data_coleta": "2024-08",
+  "observacoes": "Dados oficiais finais dos Jogos de Paris 2024"
+}

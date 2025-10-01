@@ -1,0 +1,12 @@
+{
+  "nome": "Países e Códigos NOC (1896-2022)",
+  "fonte": "Olympedia.org",
+  "descricao": "Lista de países participantes com códigos NOC oficiais",
+  "campos_principais": [
+    "country",
+    "country_noc"
+  ],
+  "periodo": "1896-2022",
+  "data_coleta": "2024-09",
+  "observacoes": "Códigos NOC são padrões do Comitê Olímpico Internacional"
+}

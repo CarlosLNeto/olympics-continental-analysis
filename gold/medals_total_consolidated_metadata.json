@@ -1,0 +1,20 @@
+{
+  "nome": "Medalhas - Total Geral (1896-2024)",
+  "descricao": "Quadro consolidado com total de medalhas (Verão + Inverno)",
+  "periodo": "1896-2024",
+  "registros": 50,
+  "colunas": [
+    "rank",
+    "country_noc",
+    "gold",
+    "silver",
+    "bronze",
+    "total"
+  ],
+  "observacoes": "Ranking oficial completo. Inclui Top 50 + Brasil e Cuba.",
+  "destaque_especial": [
+    "BRA",
+    "CUB"
+  ],
+  "criado_em": "2025-10-01T00:17:40.996217"
+}
