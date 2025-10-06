@@ -12,23 +12,27 @@ Projeto de análise de dados olímpicos implementando arquitetura de **Data Lake
 O projeto segue uma arquitetura de Data Lake moderna com:
 
 ```
-📁 Camadas:
-  raw/      → Dados originais (CSV, JSON, etc.)
-  bronze/   → Dados tratados (Parquet)
-  gold/     → Análises finais (Parquet)
-  code/     → Notebooks Jupyter
-  metadata/ → Descrições JSON
-  outputs/  → Visualizações (HTML, PNG, CSV)
+📁 Estrutura:
+  raw/          → Dados originais compartilhados (CSV, JSON)
+  bronze/       → Dados tratados por parte (Parquet)
+  gold/         → Análises finais por parte (Parquet)
+  code/         → Notebooks Jupyter por parte
+  metadata/     → Metadados JSON por parte
+  outputs/      → Visualizações (HTML, PNG, CSV)
 
-📊 Organização por Partes:
+📊 Organização:
+  • raw/ é compartilhado entre todas as partes
+  • Cada parte tem seu próprio bronze/, gold/, code/, metadata/
+  
   parte1/   → Análise de Medalhas por País (1896-2024) ✅
   parte2/   → (A ser adicionado)
 ```
 
 ### Características
+- ✅ **Dados raw compartilhados**: Economia de espaço e consistência
 - ✅ **Formato Parquet**: Todos os dados processados
 - ✅ **Metadados JSON**: Documentação de cada dataset
-- ✅ **Camadas isoladas**: Separação clara de responsabilidades
+- ✅ **Isolamento por parte**: Bronze, Gold, Code separados
 - ✅ **Modular**: Fácil adicionar novas análises
 - ✅ **Profissional**: Seguindo boas práticas de engenharia de dados
 
@@ -51,33 +55,35 @@ Dados oficiais das Olimpíadas mais recentes:
 
 ## 🎯 Análises Realizadas
 
-### 📊 Consolidação de Medalhas por País (1896-2024)
+### 📊 Parte 1: Consolidação de Medalhas por País (1896-2024)
 
 > **✨ Dados Completos:** Integração de dados históricos (1896-2022) + Paris 2024
 
 **Três análises completas com rankings oficiais:**
 
-1. **🌞 Medalhas - Jogos de Verão** (160 países com medalhas)
+1. **🌞 Medalhas - Jogos de Verão** (159 países)
    - Ranking consolidado de todas as edições incluindo Paris 2024
    - Gráfico Top 50 com distribuição Ouro/Prata/Bronze
    - Brasil e Cuba sempre visíveis com destaque
 
-2. **❄️ Medalhas - Jogos de Inverno** (47 países com medalhas)
+2. **❄️ Medalhas - Jogos de Inverno** (46 países)
    - Ranking consolidado de todas as edições de inverno
-   - Gráfico Top 50 mostrando domínio de países do hemisfério norte
    - Análise focada em países com tradição em esportes de inverno
 
 3. **🏆 Medalhas - Total Geral** (Verão + Inverno) (161 países)
    - Ranking combinado definitivo de 1896 a 2024
-   - Visão completa do desempenho olímpico histórico
    - Top 50 países no pódio olímpico mundial
 
-**Características das Análises:**
-- ✅ Dados integrados de 1896 até Paris 2024 (128 anos de história olímpica)
+**Características:**
+- ✅ Dados integrados de 1896 até Paris 2024 (128 anos de história)
 - ✅ Rankings baseados nas fontes oficiais (Olympedia + Olympics.com)
-- ✅ Visualizações profissionais com paleta de cores ouro/prata/bronze
-- ✅ Tabelas exportadas em CSV para uso em apresentações
-- ✅ Gráficos em alta resolução (PNG) para relatórios
+- ✅ Visualizações profissionais com paleta de cores corporativa
+- ✅ Tabelas HTML interativas e CSV para Excel
+- ✅ Gráficos PNG em alta resolução (300 DPI)
+
+### 📊 Parte 2: (A ser definido)
+
+Aguardando implementação. Usará os mesmos dados brutos de `raw/`.
 
 ## 📂 Estrutura do Projeto
 
