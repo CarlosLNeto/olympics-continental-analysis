@@ -1,22 +1,36 @@
-# 🏅 Análise de Medalhas Olímpicas por País (1896-2024)
+# 🏅 Análises Olímpicas - Projeto Data Lake
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![Pandas](https://img.shields.io/badge/Pandas-1.5+-green.svg)](https://pandas.pydata.org/)
+[![Parquet](https://img.shields.io/badge/Format-Parquet-red.svg)](https://parquet.apache.org/)
 [![License](https://img.shields.io/badge/License-Educational-orange.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Completo-success.svg)](README.md)
 
-Análise completa de medalhas olímpicas por país desde 1896 até 2024, incluindo dados históricos (Olympedia) e das Olimpíadas de Paris 2024. O projeto implementa uma arquitetura de **Data Lake** simplificada com integração de dados de múltiplas fontes e visualizações profissionais dos resultados.
+Projeto de análise de dados olímpicos implementando arquitetura de **Data Lake** com organização em camadas (Raw, Bronze, Gold) e separação por partes/atividades. Todos os dados processados são armazenados em formato **Parquet** para eficiência e compatibilidade.
 
-## ✅ Status do Projeto
+## 🏗️ Arquitetura Data Lake
 
-**✨ Projeto COMPLETO e FUNCIONAL! ✨**
+O projeto segue uma arquitetura de Data Lake moderna com:
 
-- ✅ **Integração de Dados**: Combinação de dados históricos (1896-2022) + Paris 2024
-- ✅ **Processamento ETL**: Pipeline Data Lake com camadas Raw → Bronze → Gold
-- ✅ **Análise Consolidada**: Medalhas por país em Jogos de Verão, Inverno e Total Geral
-- ✅ **Visualizações**: Gráficos profissionais dos Top 50 países com destaque para Brasil e Cuba
-- ✅ **Formato Eficiente**: Armazenamento em Parquet com metadados JSON
-- ✅ **Notebook Interativo**: Análise completa com resultados salvos e reproduzíveis
+```
+📁 Camadas:
+  raw/      → Dados originais (CSV, JSON, etc.)
+  bronze/   → Dados tratados (Parquet)
+  gold/     → Análises finais (Parquet)
+  code/     → Notebooks Jupyter
+  metadata/ → Descrições JSON
+  outputs/  → Visualizações (HTML, PNG, CSV)
+
+📊 Organização por Partes:
+  parte1/   → Análise de Medalhas por País (1896-2024) ✅
+  parte2/   → (A ser adicionado)
+```
+
+### Características
+- ✅ **Formato Parquet**: Todos os dados processados
+- ✅ **Metadados JSON**: Documentação de cada dataset
+- ✅ **Camadas isoladas**: Separação clara de responsabilidades
+- ✅ **Modular**: Fácil adicionar novas análises
+- ✅ **Profissional**: Seguindo boas práticas de engenharia de dados
 
 ## 📊 Datasets
 
@@ -65,97 +79,95 @@ Dados oficiais das Olimpíadas mais recentes:
 - ✅ Tabelas exportadas em CSV para uso em apresentações
 - ✅ Gráficos em alta resolução (PNG) para relatórios
 
-## 🏗️ Arquitetura do Projeto
+## 📂 Estrutura do Projeto
 
 ```
 AnalisesPorContinente/
 │
-├── 📁 raw/                           # Camada Raw - Dados originais
-│   ├── Olympics_1896_2022/           # Dados históricos Olympedia
-│   │   ├── world_olympedia_olympics_athlete_bio.csv
-│   │   ├── world_olympedia_olympics_athlete_event_result.csv
-│   │   ├── world_olympedia_olympics_country.csv
-│   │   ├── world_olympedia_olympics_game.csv
-│   │   ├── world_olympedia_olympics_game_medal_tally.csv
-│   │   ├── world_olympedia_olympics_result.csv
-│   │   └── metadata.json
-│   │
-│   └── Olympics_Paris2024/           # Dados Paris 2024
-│       ├── athletes.csv
-│       ├── medallists.csv
-│       ├── medals.csv
-│       ├── medals_total.csv
-│       ├── results/                  # 45 modalidades
-│       └── metadata.json
+├── raw/                              # CAMADA RAW
+│   ├── parte1/                       # Dados Parte 1
+│   │   ├── Olympics_1896_2022/
+│   │   └── Olympics_Paris2024/
+│   └── parte2/                       # Dados Parte 2 (vazio)
 │
-├── 📁 bronze/                        # Camada Bronze - Dados integrados
-│   └── medals_integrated_1896_2024.parquet  # Medalhas consolidadas
+├── bronze/                           # CAMADA BRONZE (Parquet)
+│   ├── parte1/
+│   │   └── medals_integrated_1896_2024.parquet
+│   └── parte2/                       # (vazio)
 │
-├── 📁 gold/                          # Camada Gold - Dados analíticos
-│   ├── medals_summer.parquet         # Análise Jogos de Verão
-│   ├── medals_summer_metadata.json
-│   ├── medals_winter.parquet         # Análise Jogos de Inverno
-│   ├── medals_winter_metadata.json
-│   ├── medals_total.parquet          # Análise Total Geral
-│   └── medals_total_metadata.json
+├── gold/                             # CAMADA GOLD (Parquet)
+│   ├── parte1/
+│   │   ├── medals_summer.parquet
+│   │   ├── medals_winter.parquet
+│   │   └── medals_total.parquet
+│   └── parte2/                       # (vazio)
 │
-├── 📁 notebooks/                     # Jupyter Notebooks
-│   ├── analise_medalhas.ipynb        # 🎯 NOTEBOOK PRINCIPAL
-│   └── check_parquet.py              # Utilitário para validar parquet
+├── code/                             # NOTEBOOKS
+│   ├── parte1/
+│   │   ├── parte1_analise_medalhas.ipynb  # 🎯 Notebook Principal
+│   │   ├── check_parquet.py
+│   │   └── README.md
+│   └── parte2/                       # (vazio)
 │
-├── 📁 outputs/                       # Outputs para apresentação
-│   ├── figures/                      # Visualizações
-│   │   ├── top50_summer.png          # Top 50 Jogos de Verão
-│   │   ├── top50_winter.png          # Top 50 Jogos de Inverno
-│   │   └── top50_total.png           # Top 50 Total Geral
-│   │
-│   └── tables/                       # Tabelas exportadas
-│       ├── medals_summer.csv         # Ranking Jogos de Verão
-│       ├── medals_winter.csv         # Ranking Jogos de Inverno
-│       └── medals_total.csv          # Ranking Total Geral
+├── metadata/                         # METADADOS (JSON)
+│   ├── parte1/
+│   │   ├── medals_summer_metadata.json
+│   │   ├── medals_winter_metadata.json
+│   │   └── medals_total_metadata.json
+│   └── parte2/                       # (vazio)
 │
-├── 📁 src/                           # Scripts auxiliares (futuro)
+├── outputs/                          # OUTPUTS (não segue camadas)
+│   ├── figures/                      # Gráficos PNG
+│   │   ├── top50_summer.png
+│   │   ├── top50_winter.png
+│   │   └── top50_total.png
+│   └── tables/                       # Tabelas HTML/CSV
+│       ├── medals_*_full.html
+│       └── medals_*.csv
 │
-├── 📄 requirements.txt               # Dependências Python
-├── 📄 .gitignore                     # Arquivos ignorados pelo Git
-└── 📄 README.md                      # Este arquivo
+├── 📄 README.md                      # Este arquivo
+├── 📄 ESTRUTURA.md                   # Documentação da arquitetura
+├── 📄 requirements.txt               # Dependências
+└── 📄 .gitignore
 ```
+
+> **📖 Documentação detalhada**: Ver [ESTRUTURA.md](ESTRUTURA.md) para entender a arquitetura completa
 
 ## 🚀 Como Usar
 
 ### 📖 Opção 1: Visualizar Resultados (Recomendado)
 
-**O notebook já contém todos os resultados executados!** Basta abrir e explorar:
+Os resultados já estão prontos! Basta visualizar:
 
 ```bash
-# Abrir Jupyter Notebook
-jupyter notebook
+# Tabelas HTML interativas
+open outputs/tables/medals_summer_full.html   # Mac
+# ou
+start outputs/tables/medals_summer_full.html  # Windows
+# ou use seu navegador favorito
 
-# Navegue até: notebooks/analise_medalhas.ipynb
+# Gráficos PNG
+open outputs/figures/top50_summer.png
+
+# Tabelas CSV
+open outputs/tables/medals_summer.csv  # Excel/LibreOffice
 ```
 
-**Você também pode visualizar diretamente os outputs:**
-- 📊 **Gráficos**: Abra os arquivos PNG em `outputs/figures/`
-- 📋 **Tabelas**: Abra os arquivos CSV em `outputs/tables/` (Excel, LibreOffice, Google Sheets)
-- 💾 **Dados processados**: Arquivos Parquet em `gold/` (pandas, DuckDB, Spark)
+### 🔄 Opção 2: Executar Parte 1
 
-### 🔄 Opção 2: Re-executar Análises
-
-Se desejar executar o pipeline completo do zero:
+Para re-executar ou modificar a análise:
 
 ```bash
-# 1. Clone o repositório (se ainda não tiver)
-git clone <url-do-repositorio>
-cd AnalisesPorContinente
-
-# 2. Instalar dependências
+# 1. Instalar dependências
 pip install -r requirements.txt
 
-# 3. Abrir Jupyter
+# 2. Abrir Jupyter
 jupyter notebook
 
-# 4. Execute: notebooks/analise_medalhas.ipynb
-#    Menu: Cell > Run All
+# 3. Navegar e abrir:
+#    code/parte1/parte1_analise_medalhas.ipynb
+
+# 4. Executar: Cell → Run All
 ```
 
 **⏱️ Tempo estimado:** 2-5 minutos

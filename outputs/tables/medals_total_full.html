@@ -5,1406 +5,229 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medalhas - Total Geral (1896-2024)</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 2.5em;
-        }
-        .subtitle {
-            text-align: center;
-            color: #7f8c8d;
-            margin-bottom: 30px;
-            font-size: 1.1em;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.95em;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-        }
-        thead tr {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            font-weight: bold;
-        }
-        th, td {
-            padding: 12px 15px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-        tbody tr {
-            border-bottom: 1px solid #dddddd;
-            transition: all 0.3s ease;
-        }
-        tbody tr:nth-of-type(even) {
-            background-color: #f9f9f9;
-        }
-        tbody tr:hover {
-            background-color: #f1f1f1;
-            transform: scale(1.02);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .top3 {
-            background-color: #d4edda !important;
-            font-weight: bold;
-        }
-        .highlight {
-            background-color: #fff3cd !important;
-            font-weight: bold;
-        }
-        .gold { color: #FFD700; font-weight: bold; }
-        .silver { color: #C0C0C0; font-weight: bold; }
-        .bronze { color: #CD7F32; font-weight: bold; }
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #ecf0f1;
-            color: #7f8c8d;
-        }
-        .legend {
-            text-align: center;
-            margin: 20px 0;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 5px;
-            font-size: 0.9em;
-        }
-        .legend span {
-            margin: 0 15px;
-            padding: 5px 10px;
-            border-radius: 3px;
-        }
-        .legend .top3-legend { background-color: #d4edda; font-weight: bold; }
-        .legend .highlight-legend { background-color: #fff3cd; font-weight: bold; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; padding: 40px 20px; color: #2c3e50; }
+        .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 40px; text-align: center; }
+        .header h1 { font-size: 32px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .header .subtitle { font-size: 16px; opacity: 0.9; font-weight: 400; }
+        .content { padding: 30px 40px; }
+        .info-bar { display: flex; justify-content: space-between; padding: 20px 0; border-bottom: 2px solid #e8eaed; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
+        .info-item { display: flex; align-items: center; gap: 8px; }
+        .info-item .label { font-size: 13px; color: #5f6368; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+        .info-item .value { font-size: 18px; font-weight: 600; color: #1e3c72; }
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 14px; }
+        thead { background: #f8f9fa; position: sticky; top: 0; z-index: 10; }
+        th { padding: 16px 12px; text-align: center; font-weight: 600; color: #202124; border-bottom: 2px solid #e8eaed; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+        th:first-child { text-align: center; width: 80px; }
+        th:nth-child(2) { text-align: left; padding-left: 24px; }
+        tbody tr { border-bottom: 1px solid #f0f0f0; transition: background-color 0.15s ease; }
+        tbody tr:hover { background-color: #f8f9fa; }
+        td { padding: 14px 12px; text-align: center; color: #5f6368; }
+        td:first-child { font-weight: 600; color: #202124; text-align: center; }
+        td:nth-child(2) { text-align: left; padding-left: 24px; font-weight: 600; color: #1e3c72; font-family: 'Courier New', monospace; font-size: 13px; }
+        td:last-child { font-weight: 700; color: #1e3c72; font-size: 15px; }
+        .rank-1 { background: linear-gradient(135deg, #fff9e6 0%, #fffbf0 100%); }
+        .rank-1 td:first-child { color: #f39c12; font-size: 16px; }
+        .rank-2 { background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%); }
+        .rank-2 td:first-child { color: #95a5a6; font-size: 16px; }
+        .rank-3 { background: linear-gradient(135deg, #fff3e6 0%, #fff8f0 100%); }
+        .rank-3 td:first-child { color: #cd7f32; font-size: 16px; }
+        .highlight { background: linear-gradient(135deg, #e8f4f8 0%, #f0f8fc 100%); border-left: 4px solid #1e88e5; }
+        .highlight td:nth-child(2) { color: #1565c0; font-weight: 700; }
+        .medal-cell { font-weight: 600; }
+        .footer { background: #f8f9fa; padding: 30px 40px; text-align: center; border-top: 1px solid #e8eaed; }
+        .footer-content { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 15px; }
+        .footer-item { font-size: 13px; color: #5f6368; }
+        .footer-item strong { color: #202124; }
+        .footer-note { font-size: 12px; color: #80868b; margin-top: 10px; }
+        @media print { body { background: white; padding: 0; } .container { box-shadow: none; } .header { background: #1e3c72 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        @media (max-width: 768px) { .content { padding: 20px 15px; } .header { padding: 30px 20px; } .header h1 { font-size: 24px; } table { font-size: 12px; } th, td { padding: 10px 8px; } }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🏆 Medalhas - Total Geral (1896-2024)</h1>
-        <p class="subtitle">Ranking completo de todos os países com medalhas olímpicas</p>
-        <div class="legend">
-            <span class="top3-legend">💚 Top 3</span>
-            <span class="highlight-legend">💛 Brasil e Cuba</span>
-            <span>🥇 Ouro</span>
-            <span>�� Prata</span>
-            <span>🥉 Bronze</span>
+        <div class="header">
+            <h1>🏆 Medalhas - Total Geral (1896-2024)</h1>
+            <p class="subtitle">Ranking Oficial de Medalhas Olímpicas</p>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>País (NOC)</th>
-                    <th>🥇 Ouro</th>
-                    <th>🥈 Prata</th>
-                    <th>🥉 Bronze</th>
-                    <th>🏅 Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="top3">
-                    <td>1</td>
-                    <td><strong>USA</strong></td>
-                    <td class="gold">1235</td>
-                    <td class="silver">1013</td>
-                    <td class="bronze">887</td>
-                    <td><strong>3135</strong></td>
-                </tr>
-                <tr class="top3">
-                    <td>2</td>
-                    <td><strong>URS</strong></td>
-                    <td class="gold">473</td>
-                    <td class="silver">376</td>
-                    <td class="bronze">355</td>
-                    <td><strong>1204</strong></td>
-                </tr>
-                <tr class="top3">
-                    <td>3</td>
-                    <td><strong>GER</strong></td>
-                    <td class="gold">367</td>
-                    <td class="silver">390</td>
-                    <td class="bronze">374</td>
-                    <td><strong>1131</strong></td>
-                </tr>
-                <tr class="">
-                    <td>4</td>
-                    <td><strong>GBR</strong></td>
-                    <td class="gold">326</td>
-                    <td class="silver">361</td>
-                    <td class="bronze">366</td>
-                    <td><strong>1053</strong></td>
-                </tr>
-                <tr class="">
-                    <td>5</td>
-                    <td><strong>FRA</strong></td>
-                    <td class="gold">303</td>
-                    <td class="silver">334</td>
-                    <td class="bronze">378</td>
-                    <td><strong>1015</strong></td>
-                </tr>
-                <tr class="">
-                    <td>6</td>
-                    <td><strong>ITA</strong></td>
-                    <td class="gold">283</td>
-                    <td class="silver">257</td>
-                    <td class="bronze">289</td>
-                    <td><strong>829</strong></td>
-                </tr>
-                <tr class="">
-                    <td>7</td>
-                    <td><strong>CHN</strong></td>
-                    <td class="gold">325</td>
-                    <td class="silver">258</td>
-                    <td class="bronze">221</td>
-                    <td><strong>804</strong></td>
-                </tr>
-                <tr class="">
-                    <td>8</td>
-                    <td><strong>SWE</strong></td>
-                    <td class="gold">220</td>
-                    <td class="silver">237</td>
-                    <td class="bronze">251</td>
-                    <td><strong>708</strong></td>
-                </tr>
-                <tr class="">
-                    <td>9</td>
-                    <td><strong>JPN</strong></td>
-                    <td class="gold">206</td>
-                    <td class="silver">190</td>
-                    <td class="bronze">224</td>
-                    <td><strong>620</strong></td>
-                </tr>
-                <tr class="">
-                    <td>10</td>
-                    <td><strong>AUS</strong></td>
-                    <td class="gold">186</td>
-                    <td class="silver">196</td>
-                    <td class="bronze">234</td>
-                    <td><strong>616</strong></td>
-                </tr>
-                <tr class="">
-                    <td>11</td>
-                    <td><strong>CAN</strong></td>
-                    <td class="gold">157</td>
-                    <td class="silver">191</td>
-                    <td class="bronze">232</td>
-                    <td><strong>580</strong></td>
-                </tr>
-                <tr class="">
-                    <td>12</td>
-                    <td><strong>NOR</strong></td>
-                    <td class="gold">212</td>
-                    <td class="silver">189</td>
-                    <td class="bronze">176</td>
-                    <td><strong>577</strong></td>
-                </tr>
-                <tr class="">
-                    <td>13</td>
-                    <td><strong>HUN</strong></td>
-                    <td class="gold">192</td>
-                    <td class="silver">170</td>
-                    <td class="bronze">192</td>
-                    <td><strong>554</strong></td>
-                </tr>
-                <tr class="">
-                    <td>14</td>
-                    <td><strong>RUS</strong></td>
-                    <td class="gold">194</td>
-                    <td class="silver">169</td>
-                    <td class="bronze">188</td>
-                    <td><strong>551</strong></td>
-                </tr>
-                <tr class="">
-                    <td>15</td>
-                    <td><strong>GDR</strong></td>
-                    <td class="gold">192</td>
-                    <td class="silver">165</td>
-                    <td class="bronze">162</td>
-                    <td><strong>519</strong></td>
-                </tr>
-                <tr class="">
-                    <td>16</td>
-                    <td><strong>NED</strong></td>
-                    <td class="gold">166</td>
-                    <td class="silver">163</td>
-                    <td class="bronze">184</td>
-                    <td><strong>513</strong></td>
-                </tr>
-                <tr class="">
-                    <td>17</td>
-                    <td><strong>FIN</strong></td>
-                    <td class="gold">151</td>
-                    <td class="silver">152</td>
-                    <td class="bronze">186</td>
-                    <td><strong>489</strong></td>
-                </tr>
-                <tr class="">
-                    <td>18</td>
-                    <td><strong>KOR</strong></td>
-                    <td class="gold">142</td>
-                    <td class="silver">130</td>
-                    <td class="bronze">126</td>
-                    <td><strong>398</strong></td>
-                </tr>
-                <tr class="">
-                    <td>19</td>
-                    <td><strong>SUI</strong></td>
-                    <td class="gold">124</td>
-                    <td class="silver">136</td>
-                    <td class="bronze">137</td>
-                    <td><strong>397</strong></td>
-                </tr>
-                <tr class="">
-                    <td>20</td>
-                    <td><strong>AUT</strong></td>
-                    <td class="gold">98</td>
-                    <td class="silver">128</td>
-                    <td class="bronze">140</td>
-                    <td><strong>366</strong></td>
-                </tr>
-                <tr class="">
-                    <td>21</td>
-                    <td><strong>POL</strong></td>
-                    <td class="gold">83</td>
-                    <td class="silver">102</td>
-                    <td class="bronze">154</td>
-                    <td><strong>339</strong></td>
-                </tr>
-                <tr class="">
-                    <td>22</td>
-                    <td><strong>ROU</strong></td>
-                    <td class="gold">93</td>
-                    <td class="silver">101</td>
-                    <td class="bronze">124</td>
-                    <td><strong>318</strong></td>
-                </tr>
-                <tr class="highlight">
-                    <td>23</td>
-                    <td><strong>CUB</strong></td>
-                    <td class="gold">86</td>
-                    <td class="silver">70</td>
-                    <td class="bronze">88</td>
-                    <td><strong>244</strong></td>
-                </tr>
-                <tr class="">
-                    <td>24</td>
-                    <td><strong>FRG</strong></td>
-                    <td class="gold">67</td>
-                    <td class="silver">82</td>
-                    <td class="bronze">94</td>
-                    <td><strong>243</strong></td>
-                </tr>
-                <tr class="">
-                    <td>25</td>
-                    <td><strong>BUL</strong></td>
-                    <td class="gold">58</td>
-                    <td class="silver">91</td>
-                    <td class="bronze">88</td>
-                    <td><strong>237</strong></td>
-                </tr>
-                <tr class="">
-                    <td>26</td>
-                    <td><strong>DEN</strong></td>
-                    <td class="gold">53</td>
-                    <td class="silver">88</td>
-                    <td class="bronze">89</td>
-                    <td><strong>230</strong></td>
-                </tr>
-                <tr class="">
-                    <td>27</td>
-                    <td><strong>ESP</strong></td>
-                    <td class="gold">54</td>
-                    <td class="silver">77</td>
-                    <td class="bronze">61</td>
-                    <td><strong>192</strong></td>
-                </tr>
-                <tr class="">
-                    <td>28</td>
-                    <td><strong>BEL</strong></td>
-                    <td class="gold">53</td>
-                    <td class="silver">61</td>
-                    <td class="bronze">77</td>
-                    <td><strong>191</strong></td>
-                </tr>
-                <tr class="">
-                    <td>29</td>
-                    <td><strong>TCH</strong></td>
-                    <td class="gold">51</td>
-                    <td class="silver">58</td>
-                    <td class="bronze">62</td>
-                    <td><strong>171</strong></td>
-                </tr>
-                <tr class="highlight">
-                    <td>30</td>
-                    <td><strong>BRA</strong></td>
-                    <td class="gold">40</td>
-                    <td class="silver">49</td>
-                    <td class="bronze">81</td>
-                    <td><strong>170</strong></td>
-                </tr>
-                <tr class="">
-                    <td>31</td>
-                    <td><strong>GRE</strong></td>
-                    <td class="gold">45</td>
-                    <td class="silver">60</td>
-                    <td class="bronze">60</td>
-                    <td><strong>165</strong></td>
-                </tr>
-                <tr class="">
-                    <td>32</td>
-                    <td><strong>NZL</strong></td>
-                    <td class="gold">65</td>
-                    <td class="silver">42</td>
-                    <td class="bronze">56</td>
-                    <td><strong>163</strong></td>
-                </tr>
-                <tr class="">
-                    <td>33</td>
-                    <td><strong>UKR</strong></td>
-                    <td class="gold">41</td>
-                    <td class="silver">43</td>
-                    <td class="bronze">76</td>
-                    <td><strong>160</strong></td>
-                </tr>
-                <tr class="">
-                    <td>34</td>
-                    <td><strong>EUN</strong></td>
-                    <td class="gold">54</td>
-                    <td class="silver">44</td>
-                    <td class="bronze">37</td>
-                    <td><strong>135</strong></td>
-                </tr>
-                <tr class="">
-                    <td>35</td>
-                    <td><strong>KEN</strong></td>
-                    <td class="gold">39</td>
-                    <td class="silver">44</td>
-                    <td class="bronze">41</td>
-                    <td><strong>124</strong></td>
-                </tr>
-                <tr class="">
-                    <td>36</td>
-                    <td><strong>ROC</strong></td>
-                    <td class="gold">28</td>
-                    <td class="silver">46</td>
-                    <td class="bronze">46</td>
-                    <td><strong>120</strong></td>
-                </tr>
-                <tr class="">
-                    <td>37</td>
-                    <td><strong>TUR</strong></td>
-                    <td class="gold">41</td>
-                    <td class="silver">29</td>
-                    <td class="bronze">41</td>
-                    <td><strong>111</strong></td>
-                </tr>
-                <tr class="">
-                    <td>38</td>
-                    <td><strong>CZE</strong></td>
-                    <td class="gold">32</td>
-                    <td class="silver">33</td>
-                    <td class="bronze">41</td>
-                    <td><strong>106</strong></td>
-                </tr>
-                <tr class="">
-                    <td>39</td>
-                    <td><strong>BLR</strong></td>
-                    <td class="gold">21</td>
-                    <td class="silver">37</td>
-                    <td class="bronze">47</td>
-                    <td><strong>105</strong></td>
-                </tr>
-                <tr class="">
-                    <td>40</td>
-                    <td><strong>RSA</strong></td>
-                    <td class="gold">28</td>
-                    <td class="silver">37</td>
-                    <td class="bronze">32</td>
-                    <td><strong>97</strong></td>
-                </tr>
-                <tr class="">
-                    <td>41</td>
-                    <td><strong>JAM</strong></td>
-                    <td class="gold">27</td>
-                    <td class="silver">39</td>
-                    <td class="bronze">28</td>
-                    <td><strong>94</strong></td>
-                </tr>
-                <tr class="">
-                    <td>42</td>
-                    <td><strong>IRI</strong></td>
-                    <td class="gold">27</td>
-                    <td class="silver">29</td>
-                    <td class="bronze">32</td>
-                    <td><strong>88</strong></td>
-                </tr>
-                <tr class="">
-                    <td>43</td>
-                    <td><strong>YUG</strong></td>
-                    <td class="gold">26</td>
-                    <td class="silver">32</td>
-                    <td class="bronze">29</td>
-                    <td><strong>87</strong></td>
-                </tr>
-                <tr class="">
-                    <td>44</td>
-                    <td><strong>KAZ</strong></td>
-                    <td class="gold">16</td>
-                    <td class="silver">27</td>
-                    <td class="bronze">43</td>
-                    <td><strong>86</strong></td>
-                </tr>
-                <tr class="">
-                    <td>45</td>
-                    <td><strong>ARG</strong></td>
-                    <td class="gold">22</td>
-                    <td class="silver">27</td>
-                    <td class="bronze">31</td>
-                    <td><strong>80</strong></td>
-                </tr>
-                <tr class="">
-                    <td>46</td>
-                    <td><strong>MEX</strong></td>
-                    <td class="gold">13</td>
-                    <td class="silver">27</td>
-                    <td class="bronze">37</td>
-                    <td><strong>77</strong></td>
-                </tr>
-                <tr class="">
-                    <td>47</td>
-                    <td><strong>PRK</strong></td>
-                    <td class="gold">16</td>
-                    <td class="silver">19</td>
-                    <td class="bronze">28</td>
-                    <td><strong>63</strong></td>
-                </tr>
-                <tr class="">
-                    <td>48</td>
-                    <td><strong>ETH</strong></td>
-                    <td class="gold">24</td>
-                    <td class="silver">15</td>
-                    <td class="bronze">23</td>
-                    <td><strong>62</strong></td>
-                </tr>
-                <tr class="">
-                    <td>49</td>
-                    <td><strong>CRO</strong></td>
-                    <td class="gold">20</td>
-                    <td class="silver">21</td>
-                    <td class="bronze">18</td>
-                    <td><strong>59</strong></td>
-                </tr>
-                <tr class="">
-                    <td>50</td>
-                    <td><strong>AZE</strong></td>
-                    <td class="gold">9</td>
-                    <td class="silver">16</td>
-                    <td class="bronze">31</td>
-                    <td><strong>56</strong></td>
-                </tr>
-                <tr class="">
-                    <td>51</td>
-                    <td><strong>SLO</strong></td>
-                    <td class="gold">14</td>
-                    <td class="silver">18</td>
-                    <td class="bronze">23</td>
-                    <td><strong>55</strong></td>
-                </tr>
-                <tr class="">
-                    <td>52</td>
-                    <td><strong>UZB</strong></td>
-                    <td class="gold">19</td>
-                    <td class="silver">8</td>
-                    <td class="bronze">23</td>
-                    <td><strong>50</strong></td>
-                </tr>
-                <tr class="">
-                    <td>53</td>
-                    <td><strong>GEO</strong></td>
-                    <td class="gold">13</td>
-                    <td class="silver">15</td>
-                    <td class="bronze">19</td>
-                    <td><strong>47</strong></td>
-                </tr>
-                <tr class="">
-                    <td>54</td>
-                    <td><strong>IRL</strong></td>
-                    <td class="gold">15</td>
-                    <td class="silver">11</td>
-                    <td class="bronze">19</td>
-                    <td><strong>45</strong></td>
-                </tr>
-                <tr class="">
-                    <td>55</td>
-                    <td><strong>EST</strong></td>
-                    <td class="gold">14</td>
-                    <td class="silver">11</td>
-                    <td class="bronze">19</td>
-                    <td><strong>44</strong></td>
-                </tr>
-                <tr class="">
-                    <td>56</td>
-                    <td><strong>SVK</strong></td>
-                    <td class="gold">14</td>
-                    <td class="silver">18</td>
-                    <td class="bronze">11</td>
-                    <td><strong>43</strong></td>
-                </tr>
-                <tr class="">
-                    <td>57</td>
-                    <td><strong>TPE</strong></td>
-                    <td class="gold">9</td>
-                    <td class="silver">11</td>
-                    <td class="bronze">23</td>
-                    <td><strong>43</strong></td>
-                </tr>
-                <tr class="">
-                    <td>58</td>
-                    <td><strong>IND</strong></td>
-                    <td class="gold">10</td>
-                    <td class="silver">10</td>
-                    <td class="bronze">21</td>
-                    <td><strong>41</strong></td>
-                </tr>
-                <tr class="">
-                    <td>59</td>
-                    <td><strong>THA</strong></td>
-                    <td class="gold">11</td>
-                    <td class="silver">11</td>
-                    <td class="bronze">19</td>
-                    <td><strong>41</strong></td>
-                </tr>
-                <tr class="">
-                    <td>60</td>
-                    <td><strong>EGY</strong></td>
-                    <td class="gold">9</td>
-                    <td class="silver">11</td>
-                    <td class="bronze">19</td>
-                    <td><strong>39</strong></td>
-                </tr>
-                <tr class="">
-                    <td>61</td>
-                    <td><strong>INA</strong></td>
-                    <td class="gold">10</td>
-                    <td class="silver">14</td>
-                    <td class="bronze">15</td>
-                    <td><strong>39</strong></td>
-                </tr>
-                <tr class="">
-                    <td>62</td>
-                    <td><strong>COL</strong></td>
-                    <td class="gold">5</td>
-                    <td class="silver">16</td>
-                    <td class="bronze">17</td>
-                    <td><strong>38</strong></td>
-                </tr>
-                <tr class="">
-                    <td>63</td>
-                    <td><strong>POR</strong></td>
-                    <td class="gold">6</td>
-                    <td class="silver">11</td>
-                    <td class="bronze">15</td>
-                    <td><strong>32</strong></td>
-                </tr>
-                <tr class="">
-                    <td>64</td>
-                    <td><strong>LAT</strong></td>
-                    <td class="gold">5</td>
-                    <td class="silver">14</td>
-                    <td class="bronze">12</td>
-                    <td><strong>31</strong></td>
-                </tr>
-                <tr class="">
-                    <td>65</td>
-                    <td><strong>MGL</strong></td>
-                    <td class="gold">2</td>
-                    <td class="silver">12</td>
-                    <td class="bronze">17</td>
-                    <td><strong>31</strong></td>
-                </tr>
-                <tr class="">
-                    <td>66</td>
-                    <td><strong>LTU</strong></td>
-                    <td class="gold">6</td>
-                    <td class="silver">9</td>
-                    <td class="bronze">15</td>
-                    <td><strong>30</strong></td>
-                </tr>
-                <tr class="">
-                    <td>67</td>
-                    <td><strong>SRB</strong></td>
-                    <td class="gold">9</td>
-                    <td class="silver">8</td>
-                    <td class="bronze">12</td>
-                    <td><strong>29</strong></td>
-                </tr>
-                <tr class="">
-                    <td>68</td>
-                    <td><strong>NGR</strong></td>
-                    <td class="gold">3</td>
-                    <td class="silver">11</td>
-                    <td class="bronze">13</td>
-                    <td><strong>27</strong></td>
-                </tr>
-                <tr class="">
-                    <td>69</td>
-                    <td><strong>MAR</strong></td>
-                    <td class="gold">8</td>
-                    <td class="silver">5</td>
-                    <td class="bronze">13</td>
-                    <td><strong>26</strong></td>
-                </tr>
-                <tr class="">
-                    <td>70</td>
-                    <td><strong>ARM</strong></td>
-                    <td class="gold">2</td>
-                    <td class="silver">11</td>
-                    <td class="bronze">9</td>
-                    <td><strong>22</strong></td>
-                </tr>
-                <tr class="">
-                    <td>71</td>
-                    <td><strong>ISR</strong></td>
-                    <td class="gold">4</td>
-                    <td class="silver">6</td>
-                    <td class="bronze">10</td>
-                    <td><strong>20</strong></td>
-                </tr>
-                <tr class="">
-                    <td>72</td>
-                    <td><strong>ALG</strong></td>
-                    <td class="gold">7</td>
-                    <td class="silver">4</td>
-                    <td class="bronze">9</td>
-                    <td><strong>20</strong></td>
-                </tr>
-                <tr class="">
-                    <td>73</td>
-                    <td><strong>TTO</strong></td>
-                    <td class="gold">3</td>
-                    <td class="silver">5</td>
-                    <td class="bronze">11</td>
-                    <td><strong>19</strong></td>
-                </tr>
-                <tr class="">
-                    <td>74</td>
-                    <td><strong>VEN</strong></td>
-                    <td class="gold">3</td>
-                    <td class="silver">7</td>
-                    <td class="bronze">9</td>
-                    <td><strong>19</strong></td>
-                </tr>
-                <tr class="">
-                    <td>75</td>
-                    <td><strong>TUN</strong></td>
-                    <td class="gold">6</td>
-                    <td class="silver">4</td>
-                    <td class="bronze">8</td>
-                    <td><strong>18</strong></td>
-                </tr>
-                <tr class="">
-                    <td>76</td>
-                    <td><strong>PHI</strong></td>
-                    <td class="gold">3</td>
-                    <td class="silver">5</td>
-                    <td class="bronze">10</td>
-                    <td><strong>18</strong></td>
-                </tr>
-                <tr class="">
-                    <td>77</td>
-                    <td><strong>BAH</strong></td>
-                    <td class="gold">8</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">6</td>
-                    <td><strong>16</strong></td>
-                </tr>
-                <tr class="">
-                    <td>78</td>
-                    <td><strong>MAS</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">8</td>
-                    <td class="bronze">7</td>
-                    <td><strong>15</strong></td>
-                </tr>
-                <tr class="">
-                    <td>79</td>
-                    <td><strong>CHI</strong></td>
-                    <td class="gold">3</td>
-                    <td class="silver">8</td>
-                    <td class="bronze">4</td>
-                    <td><strong>15</strong></td>
-                </tr>
-                <tr class="">
-                    <td>80</td>
-                    <td><strong>DOM</strong></td>
-                    <td class="gold">4</td>
-                    <td class="silver">5</td>
-                    <td class="bronze">6</td>
-                    <td><strong>15</strong></td>
-                </tr>
-                <tr class="">
-                    <td>81</td>
-                    <td><strong>KGZ</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">5</td>
-                    <td class="bronze">8</td>
-                    <td><strong>13</strong></td>
-                </tr>
-                <tr class="">
-                    <td>82</td>
-                    <td><strong>HKG</strong></td>
-                    <td class="gold">4</td>
-                    <td class="silver">3</td>
-                    <td class="bronze">6</td>
-                    <td><strong>13</strong></td>
-                </tr>
-                <tr class="">
-                    <td>83</td>
-                    <td><strong>UGA</strong></td>
-                    <td class="gold">5</td>
-                    <td class="silver">5</td>
-                    <td class="bronze">3</td>
-                    <td><strong>13</strong></td>
-                </tr>
-                <tr class="">
-                    <td>84</td>
-                    <td><strong>ANZ</strong></td>
-                    <td class="gold">3</td>
-                    <td class="silver">4</td>
-                    <td class="bronze">5</td>
-                    <td><strong>12</strong></td>
-                </tr>
-                <tr class="">
-                    <td>85</td>
-                    <td><strong>PUR</strong></td>
-                    <td class="gold">2</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">8</td>
-                    <td><strong>12</strong></td>
-                </tr>
-                <tr class="">
-                    <td>86</td>
-                    <td><strong>PAK</strong></td>
-                    <td class="gold">4</td>
-                    <td class="silver">3</td>
-                    <td class="bronze">4</td>
-                    <td><strong>11</strong></td>
-                </tr>
-                <tr class="">
-                    <td>87</td>
-                    <td><strong>ECU</strong></td>
-                    <td class="gold">4</td>
-                    <td class="silver">4</td>
-                    <td class="bronze">2</td>
-                    <td><strong>10</strong></td>
-                </tr>
-                <tr class="">
-                    <td>88</td>
-                    <td><strong>MIX</strong></td>
-                    <td class="gold">4</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">4</td>
-                    <td><strong>10</strong></td>
-                </tr>
-                <tr class="">
-                    <td>89</td>
-                    <td><strong>LIE</strong></td>
-                    <td class="gold">2</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">6</td>
-                    <td><strong>10</strong></td>
-                </tr>
-                <tr class="">
-                    <td>90</td>
-                    <td><strong>URU</strong></td>
-                    <td class="gold">2</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">6</td>
-                    <td><strong>10</strong></td>
-                </tr>
-                <tr class="">
-                    <td>91</td>
-                    <td><strong>MDA</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">3</td>
-                    <td class="bronze">7</td>
-                    <td><strong>10</strong></td>
-                </tr>
-                <tr class="">
-                    <td>92</td>
-                    <td><strong>SCG</strong></td>
-                    <td class="gold">2</td>
-                    <td class="silver">4</td>
-                    <td class="bronze">3</td>
-                    <td><strong>9</strong></td>
-                </tr>
-                <tr class="">
-                    <td>93</td>
-                    <td><strong>QAT</strong></td>
-                    <td class="gold">2</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">5</td>
-                    <td><strong>9</strong></td>
-                </tr>
-                <tr class="">
-                    <td>94</td>
-                    <td><strong>ZIM</strong></td>
-                    <td class="gold">3</td>
-                    <td class="silver">4</td>
-                    <td class="bronze">1</td>
-                    <td><strong>8</strong></td>
-                </tr>
-                <tr class="">
-                    <td>95</td>
-                    <td><strong>BRN</strong></td>
-                    <td class="gold">4</td>
-                    <td class="silver">3</td>
-                    <td class="bronze">1</td>
-                    <td><strong>8</strong></td>
-                </tr>
-                <tr class="">
-                    <td>96</td>
-                    <td><strong>TJK</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">5</td>
-                    <td><strong>7</strong></td>
-                </tr>
-                <tr class="">
-                    <td>97</td>
-                    <td><strong>LUX</strong></td>
-                    <td class="gold">3</td>
-                    <td class="silver">4</td>
-                    <td class="bronze">0</td>
-                    <td><strong>7</strong></td>
-                </tr>
-                <tr class="">
-                    <td>98</td>
-                    <td><strong>SGP</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">3</td>
-                    <td><strong>6</strong></td>
-                </tr>
-                <tr class="">
-                    <td>99</td>
-                    <td><strong>BOH</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">5</td>
-                    <td><strong>6</strong></td>
-                </tr>
-                <tr class="">
-                    <td>100</td>
-                    <td><strong>CMR</strong></td>
-                    <td class="gold">3</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">2</td>
-                    <td><strong>6</strong></td>
-                </tr>
-                <tr class="">
-                    <td>101</td>
-                    <td><strong>AIN</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">3</td>
-                    <td class="bronze">1</td>
-                    <td><strong>5</strong></td>
-                </tr>
-                <tr class="">
-                    <td>102</td>
-                    <td><strong>VIE</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">3</td>
-                    <td class="bronze">1</td>
-                    <td><strong>5</strong></td>
-                </tr>
-                <tr class="">
-                    <td>103</td>
-                    <td><strong>NAM</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">5</td>
-                    <td class="bronze">0</td>
-                    <td><strong>5</strong></td>
-                </tr>
-                <tr class="">
-                    <td>104</td>
-                    <td><strong>CIV</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">3</td>
-                    <td><strong>5</strong></td>
-                </tr>
-                <tr class="">
-                    <td>105</td>
-                    <td><strong>GHA</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">4</td>
-                    <td><strong>5</strong></td>
-                </tr>
-                <tr class="">
-                    <td>106</td>
-                    <td><strong>KOS</strong></td>
-                    <td class="gold">3</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">1</td>
-                    <td><strong>5</strong></td>
-                </tr>
-                <tr class="">
-                    <td>107</td>
-                    <td><strong>GRN</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">3</td>
-                    <td><strong>5</strong></td>
-                </tr>
-                <tr class="">
-                    <td>108</td>
-                    <td><strong>IOA</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">3</td>
-                    <td><strong>5</strong></td>
-                </tr>
-                <tr class="">
-                    <td>109</td>
-                    <td><strong>PER</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">3</td>
-                    <td class="bronze">1</td>
-                    <td><strong>5</strong></td>
-                </tr>
-                <tr class="">
-                    <td>110</td>
-                    <td><strong>FIJ</strong></td>
-                    <td class="gold">2</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">1</td>
-                    <td><strong>4</strong></td>
-                </tr>
-                <tr class="">
-                    <td>111</td>
-                    <td><strong>CRC</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">2</td>
-                    <td><strong>4</strong></td>
-                </tr>
-                <tr class="">
-                    <td>112</td>
-                    <td><strong>ISL</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">2</td>
-                    <td><strong>4</strong></td>
-                </tr>
-                <tr class="">
-                    <td>113</td>
-                    <td><strong>BOT</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">1</td>
-                    <td><strong>4</strong></td>
-                </tr>
-                <tr class="">
-                    <td>114</td>
-                    <td><strong>SYR</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">2</td>
-                    <td><strong>4</strong></td>
-                </tr>
-                <tr class="">
-                    <td>115</td>
-                    <td><strong>KSA</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">2</td>
-                    <td><strong>4</strong></td>
-                </tr>
-                <tr class="">
-                    <td>116</td>
-                    <td><strong>PAN</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">2</td>
-                    <td><strong>4</strong></td>
-                </tr>
-                <tr class="">
-                    <td>117</td>
-                    <td><strong>LBN</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">2</td>
-                    <td><strong>4</strong></td>
-                </tr>
-                <tr class="">
-                    <td>118</td>
-                    <td><strong>JOR</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">1</td>
-                    <td><strong>4</strong></td>
-                </tr>
-                <tr class="">
-                    <td>119</td>
-                    <td><strong>ZAM</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">2</td>
-                    <td><strong>3</strong></td>
-                </tr>
-                <tr class="">
-                    <td>120</td>
-                    <td><strong>SMR</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">2</td>
-                    <td><strong>3</strong></td>
-                </tr>
-                <tr class="">
-                    <td>121</td>
-                    <td><strong>KUW</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">3</td>
-                    <td><strong>3</strong></td>
-                </tr>
-                <tr class="">
-                    <td>122</td>
-                    <td><strong>GUA</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">1</td>
-                    <td><strong>3</strong></td>
-                </tr>
-                <tr class="">
-                    <td>123</td>
-                    <td><strong>BDI</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">0</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>124</td>
-                    <td><strong>BER</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>125</td>
-                    <td><strong>ALB</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">2</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>126</td>
-                    <td><strong>WIF</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">2</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>127</td>
-                    <td><strong>UAE</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>128</td>
-                    <td><strong>UAR</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">1</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>129</td>
-                    <td><strong>CYP</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">0</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>130</td>
-                    <td><strong>TAN</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">0</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>131</td>
-                    <td><strong>SUR</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>132</td>
-                    <td><strong>AFG</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">2</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>133</td>
-                    <td><strong>HAI</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">1</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>134</td>
-                    <td><strong>MKD</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">1</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>135</td>
-                    <td><strong>SRI</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">2</td>
-                    <td class="bronze">0</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>136</td>
-                    <td><strong>LCA</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">0</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>137</td>
-                    <td><strong>MOZ</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>138</td>
-                    <td><strong>NIG</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">1</td>
-                    <td><strong>2</strong></td>
-                </tr>
-                <tr class="">
-                    <td>139</td>
-                    <td><strong>DMA</strong></td>
-                    <td class="gold">1</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">0</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>140</td>
-                    <td><strong>MNE</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">0</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>141</td>
-                    <td><strong>MON</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>142</td>
-                    <td><strong>MRI</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>143</td>
-                    <td><strong>BAR</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>144</td>
-                    <td><strong>AHO</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">0</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>145</td>
-                    <td><strong>PAR</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">0</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>146</td>
-                    <td><strong>ISV</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">0</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>147</td>
-                    <td><strong>IRQ</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>148</td>
-                    <td><strong>GUY</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>149</td>
-                    <td><strong>DJI</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>150</td>
-                    <td><strong>BUR</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>151</td>
-                    <td><strong>SAM</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">0</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>152</td>
-                    <td><strong>GAB</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">0</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>153</td>
-                    <td><strong>CPV</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>154</td>
-                    <td><strong>TOG</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>155</td>
-                    <td><strong>TKM</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">0</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>156</td>
-                    <td><strong>SEN</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">0</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>157</td>
-                    <td><strong>TGA</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">0</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>158</td>
-                    <td><strong>SUD</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">1</td>
-                    <td class="bronze">0</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>159</td>
-                    <td><strong>EOR</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>1</strong></td>
-                </tr>
-                <tr class="">
-                    <td>160</td>
-                    <td><strong>ERI</strong></td>
-                    <td class="gold">0</td>
-                    <td class="silver">0</td>
-                    <td class="bronze">1</td>
-                    <td><strong>1</strong></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="content">
+            <div class="info-bar">
+                <div class="info-item"><span class="label">Período</span><span class="value">1896 - 2024</span></div>
+                <div class="info-item"><span class="label">Total de Países</span><span class="value">160</span></div>
+                <div class="info-item"><span class="label">Total de Medalhas</span><span class="value">21,697</span></div>
+            </div>
+            <div class="table-container"><table><thead><tr>
+                <th>Rank</th><th>País</th><th>🥇 Ouro</th><th>🥈 Prata</th><th>🥉 Bronze</th><th>Total</th>
+            </tr></thead><tbody>
+<tr class="rank-1"><td>1</td><td>USA</td><td class="medal-cell">1,235</td><td class="medal-cell">1,013</td><td class="medal-cell">887</td><td>3,135</td></tr>
+<tr class="rank-2"><td>2</td><td>URS</td><td class="medal-cell">473</td><td class="medal-cell">376</td><td class="medal-cell">355</td><td>1,204</td></tr>
+<tr class="rank-3"><td>3</td><td>GER</td><td class="medal-cell">367</td><td class="medal-cell">390</td><td class="medal-cell">374</td><td>1,131</td></tr>
+<tr class=""><td>4</td><td>GBR</td><td class="medal-cell">326</td><td class="medal-cell">361</td><td class="medal-cell">366</td><td>1,053</td></tr>
+<tr class=""><td>5</td><td>FRA</td><td class="medal-cell">303</td><td class="medal-cell">334</td><td class="medal-cell">378</td><td>1,015</td></tr>
+<tr class=""><td>6</td><td>ITA</td><td class="medal-cell">283</td><td class="medal-cell">257</td><td class="medal-cell">289</td><td>829</td></tr>
+<tr class=""><td>7</td><td>CHN</td><td class="medal-cell">325</td><td class="medal-cell">258</td><td class="medal-cell">221</td><td>804</td></tr>
+<tr class=""><td>8</td><td>SWE</td><td class="medal-cell">220</td><td class="medal-cell">237</td><td class="medal-cell">251</td><td>708</td></tr>
+<tr class=""><td>9</td><td>JPN</td><td class="medal-cell">206</td><td class="medal-cell">190</td><td class="medal-cell">224</td><td>620</td></tr>
+<tr class=""><td>10</td><td>AUS</td><td class="medal-cell">186</td><td class="medal-cell">196</td><td class="medal-cell">234</td><td>616</td></tr>
+<tr class=""><td>11</td><td>CAN</td><td class="medal-cell">157</td><td class="medal-cell">191</td><td class="medal-cell">232</td><td>580</td></tr>
+<tr class=""><td>12</td><td>NOR</td><td class="medal-cell">212</td><td class="medal-cell">189</td><td class="medal-cell">176</td><td>577</td></tr>
+<tr class=""><td>13</td><td>HUN</td><td class="medal-cell">192</td><td class="medal-cell">170</td><td class="medal-cell">192</td><td>554</td></tr>
+<tr class=""><td>14</td><td>RUS</td><td class="medal-cell">194</td><td class="medal-cell">169</td><td class="medal-cell">188</td><td>551</td></tr>
+<tr class=""><td>15</td><td>GDR</td><td class="medal-cell">192</td><td class="medal-cell">165</td><td class="medal-cell">162</td><td>519</td></tr>
+<tr class=""><td>16</td><td>NED</td><td class="medal-cell">166</td><td class="medal-cell">163</td><td class="medal-cell">184</td><td>513</td></tr>
+<tr class=""><td>17</td><td>FIN</td><td class="medal-cell">151</td><td class="medal-cell">152</td><td class="medal-cell">186</td><td>489</td></tr>
+<tr class=""><td>18</td><td>KOR</td><td class="medal-cell">142</td><td class="medal-cell">130</td><td class="medal-cell">126</td><td>398</td></tr>
+<tr class=""><td>19</td><td>SUI</td><td class="medal-cell">124</td><td class="medal-cell">136</td><td class="medal-cell">137</td><td>397</td></tr>
+<tr class=""><td>20</td><td>AUT</td><td class="medal-cell">98</td><td class="medal-cell">128</td><td class="medal-cell">140</td><td>366</td></tr>
+<tr class=""><td>21</td><td>POL</td><td class="medal-cell">83</td><td class="medal-cell">102</td><td class="medal-cell">154</td><td>339</td></tr>
+<tr class=""><td>22</td><td>ROU</td><td class="medal-cell">93</td><td class="medal-cell">101</td><td class="medal-cell">124</td><td>318</td></tr>
+<tr class="highlight"><td>23</td><td>CUB</td><td class="medal-cell">86</td><td class="medal-cell">70</td><td class="medal-cell">88</td><td>244</td></tr>
+<tr class=""><td>24</td><td>FRG</td><td class="medal-cell">67</td><td class="medal-cell">82</td><td class="medal-cell">94</td><td>243</td></tr>
+<tr class=""><td>25</td><td>BUL</td><td class="medal-cell">58</td><td class="medal-cell">91</td><td class="medal-cell">88</td><td>237</td></tr>
+<tr class=""><td>26</td><td>DEN</td><td class="medal-cell">53</td><td class="medal-cell">88</td><td class="medal-cell">89</td><td>230</td></tr>
+<tr class=""><td>27</td><td>ESP</td><td class="medal-cell">54</td><td class="medal-cell">77</td><td class="medal-cell">61</td><td>192</td></tr>
+<tr class=""><td>28</td><td>BEL</td><td class="medal-cell">53</td><td class="medal-cell">61</td><td class="medal-cell">77</td><td>191</td></tr>
+<tr class=""><td>29</td><td>TCH</td><td class="medal-cell">51</td><td class="medal-cell">58</td><td class="medal-cell">62</td><td>171</td></tr>
+<tr class="highlight"><td>30</td><td>BRA</td><td class="medal-cell">40</td><td class="medal-cell">49</td><td class="medal-cell">81</td><td>170</td></tr>
+<tr class=""><td>31</td><td>GRE</td><td class="medal-cell">45</td><td class="medal-cell">60</td><td class="medal-cell">60</td><td>165</td></tr>
+<tr class=""><td>32</td><td>NZL</td><td class="medal-cell">65</td><td class="medal-cell">42</td><td class="medal-cell">56</td><td>163</td></tr>
+<tr class=""><td>33</td><td>UKR</td><td class="medal-cell">41</td><td class="medal-cell">43</td><td class="medal-cell">76</td><td>160</td></tr>
+<tr class=""><td>34</td><td>EUN</td><td class="medal-cell">54</td><td class="medal-cell">44</td><td class="medal-cell">37</td><td>135</td></tr>
+<tr class=""><td>35</td><td>KEN</td><td class="medal-cell">39</td><td class="medal-cell">44</td><td class="medal-cell">41</td><td>124</td></tr>
+<tr class=""><td>36</td><td>ROC</td><td class="medal-cell">28</td><td class="medal-cell">46</td><td class="medal-cell">46</td><td>120</td></tr>
+<tr class=""><td>37</td><td>TUR</td><td class="medal-cell">41</td><td class="medal-cell">29</td><td class="medal-cell">41</td><td>111</td></tr>
+<tr class=""><td>38</td><td>CZE</td><td class="medal-cell">32</td><td class="medal-cell">33</td><td class="medal-cell">41</td><td>106</td></tr>
+<tr class=""><td>39</td><td>BLR</td><td class="medal-cell">21</td><td class="medal-cell">37</td><td class="medal-cell">47</td><td>105</td></tr>
+<tr class=""><td>40</td><td>RSA</td><td class="medal-cell">28</td><td class="medal-cell">37</td><td class="medal-cell">32</td><td>97</td></tr>
+<tr class=""><td>41</td><td>JAM</td><td class="medal-cell">27</td><td class="medal-cell">39</td><td class="medal-cell">28</td><td>94</td></tr>
+<tr class=""><td>42</td><td>IRI</td><td class="medal-cell">27</td><td class="medal-cell">29</td><td class="medal-cell">32</td><td>88</td></tr>
+<tr class=""><td>43</td><td>YUG</td><td class="medal-cell">26</td><td class="medal-cell">32</td><td class="medal-cell">29</td><td>87</td></tr>
+<tr class=""><td>44</td><td>KAZ</td><td class="medal-cell">16</td><td class="medal-cell">27</td><td class="medal-cell">43</td><td>86</td></tr>
+<tr class=""><td>45</td><td>ARG</td><td class="medal-cell">22</td><td class="medal-cell">27</td><td class="medal-cell">31</td><td>80</td></tr>
+<tr class=""><td>46</td><td>MEX</td><td class="medal-cell">13</td><td class="medal-cell">27</td><td class="medal-cell">37</td><td>77</td></tr>
+<tr class=""><td>47</td><td>PRK</td><td class="medal-cell">16</td><td class="medal-cell">19</td><td class="medal-cell">28</td><td>63</td></tr>
+<tr class=""><td>48</td><td>ETH</td><td class="medal-cell">24</td><td class="medal-cell">15</td><td class="medal-cell">23</td><td>62</td></tr>
+<tr class=""><td>49</td><td>CRO</td><td class="medal-cell">20</td><td class="medal-cell">21</td><td class="medal-cell">18</td><td>59</td></tr>
+<tr class=""><td>50</td><td>AZE</td><td class="medal-cell">9</td><td class="medal-cell">16</td><td class="medal-cell">31</td><td>56</td></tr>
+<tr class=""><td>51</td><td>SLO</td><td class="medal-cell">14</td><td class="medal-cell">18</td><td class="medal-cell">23</td><td>55</td></tr>
+<tr class=""><td>52</td><td>UZB</td><td class="medal-cell">19</td><td class="medal-cell">8</td><td class="medal-cell">23</td><td>50</td></tr>
+<tr class=""><td>53</td><td>GEO</td><td class="medal-cell">13</td><td class="medal-cell">15</td><td class="medal-cell">19</td><td>47</td></tr>
+<tr class=""><td>54</td><td>IRL</td><td class="medal-cell">15</td><td class="medal-cell">11</td><td class="medal-cell">19</td><td>45</td></tr>
+<tr class=""><td>55</td><td>EST</td><td class="medal-cell">14</td><td class="medal-cell">11</td><td class="medal-cell">19</td><td>44</td></tr>
+<tr class=""><td>56</td><td>SVK</td><td class="medal-cell">14</td><td class="medal-cell">18</td><td class="medal-cell">11</td><td>43</td></tr>
+<tr class=""><td>57</td><td>TPE</td><td class="medal-cell">9</td><td class="medal-cell">11</td><td class="medal-cell">23</td><td>43</td></tr>
+<tr class=""><td>58</td><td>IND</td><td class="medal-cell">10</td><td class="medal-cell">10</td><td class="medal-cell">21</td><td>41</td></tr>
+<tr class=""><td>59</td><td>THA</td><td class="medal-cell">11</td><td class="medal-cell">11</td><td class="medal-cell">19</td><td>41</td></tr>
+<tr class=""><td>60</td><td>EGY</td><td class="medal-cell">9</td><td class="medal-cell">11</td><td class="medal-cell">19</td><td>39</td></tr>
+<tr class=""><td>61</td><td>INA</td><td class="medal-cell">10</td><td class="medal-cell">14</td><td class="medal-cell">15</td><td>39</td></tr>
+<tr class=""><td>62</td><td>COL</td><td class="medal-cell">5</td><td class="medal-cell">16</td><td class="medal-cell">17</td><td>38</td></tr>
+<tr class=""><td>63</td><td>POR</td><td class="medal-cell">6</td><td class="medal-cell">11</td><td class="medal-cell">15</td><td>32</td></tr>
+<tr class=""><td>64</td><td>LAT</td><td class="medal-cell">5</td><td class="medal-cell">14</td><td class="medal-cell">12</td><td>31</td></tr>
+<tr class=""><td>65</td><td>MGL</td><td class="medal-cell">2</td><td class="medal-cell">12</td><td class="medal-cell">17</td><td>31</td></tr>
+<tr class=""><td>66</td><td>LTU</td><td class="medal-cell">6</td><td class="medal-cell">9</td><td class="medal-cell">15</td><td>30</td></tr>
+<tr class=""><td>67</td><td>SRB</td><td class="medal-cell">9</td><td class="medal-cell">8</td><td class="medal-cell">12</td><td>29</td></tr>
+<tr class=""><td>68</td><td>NGR</td><td class="medal-cell">3</td><td class="medal-cell">11</td><td class="medal-cell">13</td><td>27</td></tr>
+<tr class=""><td>69</td><td>MAR</td><td class="medal-cell">8</td><td class="medal-cell">5</td><td class="medal-cell">13</td><td>26</td></tr>
+<tr class=""><td>70</td><td>ARM</td><td class="medal-cell">2</td><td class="medal-cell">11</td><td class="medal-cell">9</td><td>22</td></tr>
+<tr class=""><td>71</td><td>ISR</td><td class="medal-cell">4</td><td class="medal-cell">6</td><td class="medal-cell">10</td><td>20</td></tr>
+<tr class=""><td>72</td><td>ALG</td><td class="medal-cell">7</td><td class="medal-cell">4</td><td class="medal-cell">9</td><td>20</td></tr>
+<tr class=""><td>73</td><td>TTO</td><td class="medal-cell">3</td><td class="medal-cell">5</td><td class="medal-cell">11</td><td>19</td></tr>
+<tr class=""><td>74</td><td>VEN</td><td class="medal-cell">3</td><td class="medal-cell">7</td><td class="medal-cell">9</td><td>19</td></tr>
+<tr class=""><td>75</td><td>TUN</td><td class="medal-cell">6</td><td class="medal-cell">4</td><td class="medal-cell">8</td><td>18</td></tr>
+<tr class=""><td>76</td><td>PHI</td><td class="medal-cell">3</td><td class="medal-cell">5</td><td class="medal-cell">10</td><td>18</td></tr>
+<tr class=""><td>77</td><td>BAH</td><td class="medal-cell">8</td><td class="medal-cell">2</td><td class="medal-cell">6</td><td>16</td></tr>
+<tr class=""><td>78</td><td>MAS</td><td class="medal-cell">0</td><td class="medal-cell">8</td><td class="medal-cell">7</td><td>15</td></tr>
+<tr class=""><td>79</td><td>CHI</td><td class="medal-cell">3</td><td class="medal-cell">8</td><td class="medal-cell">4</td><td>15</td></tr>
+<tr class=""><td>80</td><td>DOM</td><td class="medal-cell">4</td><td class="medal-cell">5</td><td class="medal-cell">6</td><td>15</td></tr>
+<tr class=""><td>81</td><td>KGZ</td><td class="medal-cell">0</td><td class="medal-cell">5</td><td class="medal-cell">8</td><td>13</td></tr>
+<tr class=""><td>82</td><td>HKG</td><td class="medal-cell">4</td><td class="medal-cell">3</td><td class="medal-cell">6</td><td>13</td></tr>
+<tr class=""><td>83</td><td>UGA</td><td class="medal-cell">5</td><td class="medal-cell">5</td><td class="medal-cell">3</td><td>13</td></tr>
+<tr class=""><td>84</td><td>ANZ</td><td class="medal-cell">3</td><td class="medal-cell">4</td><td class="medal-cell">5</td><td>12</td></tr>
+<tr class=""><td>85</td><td>PUR</td><td class="medal-cell">2</td><td class="medal-cell">2</td><td class="medal-cell">8</td><td>12</td></tr>
+<tr class=""><td>86</td><td>PAK</td><td class="medal-cell">4</td><td class="medal-cell">3</td><td class="medal-cell">4</td><td>11</td></tr>
+<tr class=""><td>87</td><td>ECU</td><td class="medal-cell">4</td><td class="medal-cell">4</td><td class="medal-cell">2</td><td>10</td></tr>
+<tr class=""><td>88</td><td>MIX</td><td class="medal-cell">4</td><td class="medal-cell">2</td><td class="medal-cell">4</td><td>10</td></tr>
+<tr class=""><td>89</td><td>LIE</td><td class="medal-cell">2</td><td class="medal-cell">2</td><td class="medal-cell">6</td><td>10</td></tr>
+<tr class=""><td>90</td><td>URU</td><td class="medal-cell">2</td><td class="medal-cell">2</td><td class="medal-cell">6</td><td>10</td></tr>
+<tr class=""><td>91</td><td>MDA</td><td class="medal-cell">0</td><td class="medal-cell">3</td><td class="medal-cell">7</td><td>10</td></tr>
+<tr class=""><td>92</td><td>SCG</td><td class="medal-cell">2</td><td class="medal-cell">4</td><td class="medal-cell">3</td><td>9</td></tr>
+<tr class=""><td>93</td><td>QAT</td><td class="medal-cell">2</td><td class="medal-cell">2</td><td class="medal-cell">5</td><td>9</td></tr>
+<tr class=""><td>94</td><td>ZIM</td><td class="medal-cell">3</td><td class="medal-cell">4</td><td class="medal-cell">1</td><td>8</td></tr>
+<tr class=""><td>95</td><td>BRN</td><td class="medal-cell">4</td><td class="medal-cell">3</td><td class="medal-cell">1</td><td>8</td></tr>
+<tr class=""><td>96</td><td>TJK</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td class="medal-cell">5</td><td>7</td></tr>
+<tr class=""><td>97</td><td>LUX</td><td class="medal-cell">3</td><td class="medal-cell">4</td><td class="medal-cell">0</td><td>7</td></tr>
+<tr class=""><td>98</td><td>SGP</td><td class="medal-cell">1</td><td class="medal-cell">2</td><td class="medal-cell">3</td><td>6</td></tr>
+<tr class=""><td>99</td><td>BOH</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">5</td><td>6</td></tr>
+<tr class=""><td>100</td><td>CMR</td><td class="medal-cell">3</td><td class="medal-cell">1</td><td class="medal-cell">2</td><td>6</td></tr>
+<tr class=""><td>101</td><td>AIN</td><td class="medal-cell">1</td><td class="medal-cell">3</td><td class="medal-cell">1</td><td>5</td></tr>
+<tr class=""><td>102</td><td>VIE</td><td class="medal-cell">1</td><td class="medal-cell">3</td><td class="medal-cell">1</td><td>5</td></tr>
+<tr class=""><td>103</td><td>NAM</td><td class="medal-cell">0</td><td class="medal-cell">5</td><td class="medal-cell">0</td><td>5</td></tr>
+<tr class=""><td>104</td><td>CIV</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td class="medal-cell">3</td><td>5</td></tr>
+<tr class=""><td>105</td><td>GHA</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">4</td><td>5</td></tr>
+<tr class=""><td>106</td><td>KOS</td><td class="medal-cell">3</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td>5</td></tr>
+<tr class=""><td>107</td><td>GRN</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td class="medal-cell">3</td><td>5</td></tr>
+<tr class=""><td>108</td><td>IOA</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td class="medal-cell">3</td><td>5</td></tr>
+<tr class=""><td>109</td><td>PER</td><td class="medal-cell">1</td><td class="medal-cell">3</td><td class="medal-cell">1</td><td>5</td></tr>
+<tr class=""><td>110</td><td>FIJ</td><td class="medal-cell">2</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td>4</td></tr>
+<tr class=""><td>111</td><td>CRC</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td class="medal-cell">2</td><td>4</td></tr>
+<tr class=""><td>112</td><td>ISL</td><td class="medal-cell">0</td><td class="medal-cell">2</td><td class="medal-cell">2</td><td>4</td></tr>
+<tr class=""><td>113</td><td>BOT</td><td class="medal-cell">1</td><td class="medal-cell">2</td><td class="medal-cell">1</td><td>4</td></tr>
+<tr class=""><td>114</td><td>SYR</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td class="medal-cell">2</td><td>4</td></tr>
+<tr class=""><td>115</td><td>KSA</td><td class="medal-cell">0</td><td class="medal-cell">2</td><td class="medal-cell">2</td><td>4</td></tr>
+<tr class=""><td>116</td><td>PAN</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td class="medal-cell">2</td><td>4</td></tr>
+<tr class=""><td>117</td><td>LBN</td><td class="medal-cell">0</td><td class="medal-cell">2</td><td class="medal-cell">2</td><td>4</td></tr>
+<tr class=""><td>118</td><td>JOR</td><td class="medal-cell">1</td><td class="medal-cell">2</td><td class="medal-cell">1</td><td>4</td></tr>
+<tr class=""><td>119</td><td>ZAM</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">2</td><td>3</td></tr>
+<tr class=""><td>120</td><td>SMR</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">2</td><td>3</td></tr>
+<tr class=""><td>121</td><td>KUW</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">3</td><td>3</td></tr>
+<tr class=""><td>122</td><td>GUA</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td>3</td></tr>
+<tr class=""><td>123</td><td>BDI</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td>2</td></tr>
+<tr class=""><td>124</td><td>BER</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>2</td></tr>
+<tr class=""><td>125</td><td>ALB</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">2</td><td>2</td></tr>
+<tr class=""><td>126</td><td>WIF</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">2</td><td>2</td></tr>
+<tr class=""><td>127</td><td>UAE</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>2</td></tr>
+<tr class=""><td>128</td><td>UAR</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td>2</td></tr>
+<tr class=""><td>129</td><td>CYP</td><td class="medal-cell">0</td><td class="medal-cell">2</td><td class="medal-cell">0</td><td>2</td></tr>
+<tr class=""><td>130</td><td>TAN</td><td class="medal-cell">0</td><td class="medal-cell">2</td><td class="medal-cell">0</td><td>2</td></tr>
+<tr class=""><td>131</td><td>SUR</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>2</td></tr>
+<tr class=""><td>132</td><td>AFG</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">2</td><td>2</td></tr>
+<tr class=""><td>133</td><td>HAI</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td>2</td></tr>
+<tr class=""><td>134</td><td>MKD</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td>2</td></tr>
+<tr class=""><td>135</td><td>SRI</td><td class="medal-cell">0</td><td class="medal-cell">2</td><td class="medal-cell">0</td><td>2</td></tr>
+<tr class=""><td>136</td><td>LCA</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td>2</td></tr>
+<tr class=""><td>137</td><td>MOZ</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>2</td></tr>
+<tr class=""><td>138</td><td>NIG</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">1</td><td>2</td></tr>
+<tr class=""><td>139</td><td>DMA</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td>1</td></tr>
+<tr class=""><td>140</td><td>MNE</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td>1</td></tr>
+<tr class=""><td>141</td><td>MON</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>1</td></tr>
+<tr class=""><td>142</td><td>MRI</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>1</td></tr>
+<tr class=""><td>143</td><td>BAR</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>1</td></tr>
+<tr class=""><td>144</td><td>AHO</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td>1</td></tr>
+<tr class=""><td>145</td><td>PAR</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td>1</td></tr>
+<tr class=""><td>146</td><td>ISV</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td>1</td></tr>
+<tr class=""><td>147</td><td>IRQ</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>1</td></tr>
+<tr class=""><td>148</td><td>GUY</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>1</td></tr>
+<tr class=""><td>149</td><td>DJI</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>1</td></tr>
+<tr class=""><td>150</td><td>BUR</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>1</td></tr>
+<tr class=""><td>151</td><td>SAM</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td>1</td></tr>
+<tr class=""><td>152</td><td>GAB</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td>1</td></tr>
+<tr class=""><td>153</td><td>CPV</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>1</td></tr>
+<tr class=""><td>154</td><td>TOG</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>1</td></tr>
+<tr class=""><td>155</td><td>TKM</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td>1</td></tr>
+<tr class=""><td>156</td><td>SEN</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td>1</td></tr>
+<tr class=""><td>157</td><td>TGA</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td>1</td></tr>
+<tr class=""><td>158</td><td>SUD</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td class="medal-cell">0</td><td>1</td></tr>
+<tr class=""><td>159</td><td>EOR</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>1</td></tr>
+<tr class=""><td>160</td><td>ERI</td><td class="medal-cell">0</td><td class="medal-cell">0</td><td class="medal-cell">1</td><td>1</td></tr>
+</tbody></table></div></div>
         <div class="footer">
-            <p><strong>Fonte:</strong> Olympedia.org (1896-2022) + Olympics.com (Paris 2024)</p>
-            <p><strong>Período:</strong> 1896-2024 | <strong>Total de países:</strong> 160</p>
+            <div class="footer-content">
+                <div class="footer-item"><strong>Fonte:</strong> Olympedia.org (1896-2022) + Olympics.com (Paris 2024)</div>
+                <div class="footer-item"><strong>Gerado em:</strong> Outubro 2024</div>
+            </div>
+            <p class="footer-note">Rankings baseados em dados oficiais. Brasil e Cuba destacados para referência.</p>
         </div>
     </div>
 </body>
