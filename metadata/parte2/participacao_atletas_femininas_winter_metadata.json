@@ -1,0 +1,54 @@
+{
+  "dataset_name": "participacao_atletas_femininas_winter",
+  "description": "Percentual de ATLETAS femininas participantes nos Jogos de Inverno (contagem única por atleta)",
+  "source": "Calculado a partir de medals_integrated.parquet usando athlete_id para contagem única",
+  "creation_date": "2025-10-06 13:50:42",
+  "file_path": "gold/parte2/participacao_atletas_femininas_winter.parquet",
+  "format": "parquet",
+  "dimensions": {
+    "rows": 24,
+    "columns": 4
+  },
+  "columns": [
+    "Américas",
+    "Europa",
+    "Oceania",
+    "Ásia"
+  ],
+  "dtypes": {
+    "Américas": "float64",
+    "Europa": "float64",
+    "Oceania": "float64",
+    "Ásia": "float64"
+  },
+  "missing_values": {
+    "Américas": 0,
+    "Europa": 0,
+    "Oceania": 0,
+    "Ásia": 0
+  },
+  "memory_usage_mb": 0.00091552734375,
+  "index_name": "game_year",
+  "sample_values": {
+    "Américas": {
+      "1924": 4.3478260869565215,
+      "1928": 3.8461538461538463,
+      "1932": 4.0
+    },
+    "Europa": {
+      "1924": 4.854368932038835,
+      "1928": 8.620689655172415,
+      "1932": 10.81081081081081
+    },
+    "Oceania": {
+      "1924": 0.0,
+      "1928": 0.0,
+      "1932": 0.0
+    },
+    "Ásia": {
+      "1924": 0.0,
+      "1928": 0.0,
+      "1932": 0.0
+    }
+  }
+}

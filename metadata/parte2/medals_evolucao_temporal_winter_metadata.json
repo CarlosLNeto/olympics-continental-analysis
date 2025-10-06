@@ -1,0 +1,54 @@
+{
+  "dataset_name": "medals_evolucao_temporal_winter",
+  "description": "Evolução temporal do número de medalhas por continente nos Jogos de Inverno",
+  "source": "Agregação de medals_integrated.parquet filtrado para game_season='Winter'",
+  "creation_date": "2025-10-06 13:50:42",
+  "file_path": "gold/parte2/medals_evolucao_temporal_winter.parquet",
+  "format": "parquet",
+  "dimensions": {
+    "rows": 24,
+    "columns": 4
+  },
+  "columns": [
+    "Américas",
+    "Europa",
+    "Oceania",
+    "Ásia"
+  ],
+  "dtypes": {
+    "Américas": "int64",
+    "Europa": "int64",
+    "Oceania": "int64",
+    "Ásia": "int64"
+  },
+  "missing_values": {
+    "Américas": 0,
+    "Europa": 0,
+    "Oceania": 0,
+    "Ásia": 0
+  },
+  "memory_usage_mb": 0.00091552734375,
+  "index_name": "game_year",
+  "sample_values": {
+    "Américas": {
+      "1924": 23,
+      "1928": 27,
+      "1932": 54
+    },
+    "Europa": {
+      "1924": 118,
+      "1928": 63,
+      "1932": 38
+    },
+    "Oceania": {
+      "1924": 21,
+      "1928": 0,
+      "1932": 0
+    },
+    "Ásia": {
+      "1924": 42,
+      "1928": 0,
+      "1932": 0
+    }
+  }
+}

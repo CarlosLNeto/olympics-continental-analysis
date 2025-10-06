@@ -1,0 +1,54 @@
+{
+  "dataset_name": "crescimento_stats_winter",
+  "description": "Estatísticas de crescimento de países participantes (medalhistas) nos Jogos de Inverno por continente",
+  "source": "Calculado a partir de medals_integrated.parquet - agregação temporal de países que ganharam medalhas",
+  "creation_date": "2025-10-06 13:50:42",
+  "file_path": "gold/parte2/crescimento_stats_winter.parquet",
+  "format": "parquet",
+  "dimensions": {
+    "rows": 4,
+    "columns": 4
+  },
+  "columns": [
+    "Américas",
+    "Europa",
+    "Oceania",
+    "Ásia"
+  ],
+  "dtypes": {
+    "Américas": "float64",
+    "Europa": "float64",
+    "Oceania": "float64",
+    "Ásia": "float64"
+  },
+  "missing_values": {
+    "Américas": 0,
+    "Europa": 0,
+    "Oceania": 0,
+    "Ásia": 0
+  },
+  "memory_usage_mb": 0.00035190582275390625,
+  "index_name": null,
+  "sample_values": {
+    "Américas": {
+      "mean": 2.0,
+      "std": 0.0,
+      "min": 2.0
+    },
+    "Europa": {
+      "mean": 14.208333333333334,
+      "std": 4.128155358833612,
+      "min": 8.0
+    },
+    "Oceania": {
+      "mean": 0.5,
+      "std": 0.659380473395787,
+      "min": 0.0
+    },
+    "Ásia": {
+      "mean": 1.75,
+      "std": 1.7257638510425513,
+      "min": 0.0
+    }
+  }
+}

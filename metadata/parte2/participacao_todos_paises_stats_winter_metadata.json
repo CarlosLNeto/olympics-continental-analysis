@@ -1,0 +1,70 @@
+{
+  "dataset_name": "participacao_todos_paises_stats_winter",
+  "description": "Estatísticas de participação de TODOS os países nos Jogos de Inverno (média, desvio, min, max)",
+  "source": "Estatísticas calculadas a partir de participacao_todos_paises_winter.parquet",
+  "creation_date": "2025-10-06 13:50:42",
+  "file_path": "gold/parte2/participacao_todos_paises_stats_winter.parquet",
+  "format": "parquet",
+  "dimensions": {
+    "rows": 4,
+    "columns": 6
+  },
+  "columns": [
+    "Américas",
+    "Diversos",
+    "Europa",
+    "Oceania",
+    "África",
+    "Ásia"
+  ],
+  "dtypes": {
+    "Américas": "float64",
+    "Diversos": "float64",
+    "Europa": "float64",
+    "Oceania": "float64",
+    "África": "float64",
+    "Ásia": "float64"
+  },
+  "missing_values": {
+    "Américas": 0,
+    "Diversos": 0,
+    "Europa": 0,
+    "Oceania": 0,
+    "África": 0,
+    "Ásia": 0
+  },
+  "memory_usage_mb": 0.00041294097900390625,
+  "index_name": null,
+  "sample_values": {
+    "Américas": {
+      "mean": 7.5,
+      "std": 4.501207567444251,
+      "min": 2.0
+    },
+    "Diversos": {
+      "mean": 0.041666666666666664,
+      "std": 0.2041241452319315,
+      "min": 0.0
+    },
+    "Europa": {
+      "mean": 31.291666666666668,
+      "std": 12.091963434866354,
+      "min": 14.0
+    },
+    "Oceania": {
+      "mean": 1.9166666666666667,
+      "std": 1.1000658741803746,
+      "min": 0.0
+    },
+    "África": {
+      "mean": 1.9166666666666667,
+      "std": 2.3575349444902725,
+      "min": 0.0
+    },
+    "Ásia": {
+      "mean": 8.083333333333334,
+      "std": 5.9776152484055896,
+      "min": 1.0
+    }
+  }
+}

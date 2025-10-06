@@ -1,0 +1,70 @@
+{
+  "dataset_name": "crescimento_temporal_summer",
+  "description": "Evolução temporal do número de países medalhistas nos Jogos de Verão por continente e ano",
+  "source": "Calculado a partir de medals_integrated.parquet - contagem de países únicos por ano que ganharam medalhas",
+  "creation_date": "2025-10-06 13:50:42",
+  "file_path": "gold/parte2/crescimento_temporal_summer.parquet",
+  "format": "parquet",
+  "dimensions": {
+    "rows": 30,
+    "columns": 6
+  },
+  "columns": [
+    "Américas",
+    "Diversos",
+    "Europa",
+    "Oceania",
+    "África",
+    "Ásia"
+  ],
+  "dtypes": {
+    "Américas": "int64",
+    "Diversos": "int64",
+    "Europa": "int64",
+    "Oceania": "int64",
+    "África": "int64",
+    "Ásia": "int64"
+  },
+  "missing_values": {
+    "Américas": 0,
+    "Diversos": 0,
+    "Europa": 0,
+    "Oceania": 0,
+    "África": 0,
+    "Ásia": 0
+  },
+  "memory_usage_mb": 0.0016021728515625,
+  "index_name": "game_year",
+  "sample_values": {
+    "Américas": {
+      "1896": 1,
+      "1900": 3,
+      "1904": 3
+    },
+    "Diversos": {
+      "1896": 0,
+      "1900": 0,
+      "1904": 0
+    },
+    "Europa": {
+      "1896": 8,
+      "1900": 14,
+      "1904": 4
+    },
+    "Oceania": {
+      "1896": 1,
+      "1900": 1,
+      "1904": 0
+    },
+    "África": {
+      "1896": 0,
+      "1900": 0,
+      "1904": 0
+    },
+    "Ásia": {
+      "1896": 0,
+      "1900": 1,
+      "1904": 0
+    }
+  }
+}

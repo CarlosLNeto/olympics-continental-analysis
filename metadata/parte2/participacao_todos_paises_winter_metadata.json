@@ -1,0 +1,70 @@
+{
+  "dataset_name": "participacao_todos_paises_winter",
+  "description": "Número de TODOS os países participantes dos Jogos de Inverno por continente e ano (não apenas medalhistas)",
+  "source": "Calculado a partir de world_olympedia_olympics_athlete_event_result.csv",
+  "creation_date": "2025-10-06 13:50:42",
+  "file_path": "gold/parte2/participacao_todos_paises_winter.parquet",
+  "format": "parquet",
+  "dimensions": {
+    "rows": 24,
+    "columns": 6
+  },
+  "columns": [
+    "Américas",
+    "Diversos",
+    "Europa",
+    "Oceania",
+    "África",
+    "Ásia"
+  ],
+  "dtypes": {
+    "Américas": "int64",
+    "Diversos": "int64",
+    "Europa": "int64",
+    "Oceania": "int64",
+    "África": "int64",
+    "Ásia": "int64"
+  },
+  "missing_values": {
+    "Américas": 0,
+    "Diversos": 0,
+    "Europa": 0,
+    "Oceania": 0,
+    "África": 0,
+    "Ásia": 0
+  },
+  "memory_usage_mb": 0.00128173828125,
+  "index_name": "game_year",
+  "sample_values": {
+    "Américas": {
+      "1924": 2,
+      "1928": 4,
+      "1932": 2
+    },
+    "Diversos": {
+      "1924": 0,
+      "1928": 0,
+      "1932": 0
+    },
+    "Europa": {
+      "1924": 14,
+      "1928": 20,
+      "1932": 14
+    },
+    "Oceania": {
+      "1924": 1,
+      "1928": 0,
+      "1932": 0
+    },
+    "África": {
+      "1924": 0,
+      "1928": 0,
+      "1932": 0
+    },
+    "Ásia": {
+      "1924": 2,
+      "1928": 1,
+      "1932": 1
+    }
+  }
+}

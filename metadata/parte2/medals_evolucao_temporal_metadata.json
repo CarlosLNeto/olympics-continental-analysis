@@ -1,0 +1,70 @@
+{
+  "dataset_name": "medals_evolucao_temporal",
+  "description": "Evolução temporal do número de medalhas por continente e ano (Verão e Inverno combinados)",
+  "source": "Agregação de medals_integrated.parquet por ano e continente",
+  "creation_date": "2025-10-06 13:50:42",
+  "file_path": "gold/parte2/medals_evolucao_temporal.parquet",
+  "format": "parquet",
+  "dimensions": {
+    "rows": 38,
+    "columns": 6
+  },
+  "columns": [
+    "Américas",
+    "Diversos",
+    "Europa",
+    "Oceania",
+    "África",
+    "Ásia"
+  ],
+  "dtypes": {
+    "Américas": "int64",
+    "Diversos": "int64",
+    "Europa": "int64",
+    "Oceania": "int64",
+    "África": "int64",
+    "Ásia": "int64"
+  },
+  "missing_values": {
+    "Américas": 0,
+    "Diversos": 0,
+    "Europa": 0,
+    "Oceania": 0,
+    "África": 0,
+    "Ásia": 0
+  },
+  "memory_usage_mb": 0.0020294189453125,
+  "index_name": "game_year",
+  "sample_values": {
+    "Américas": {
+      "1896": 20,
+      "1900": 70,
+      "1904": 478
+    },
+    "Diversos": {
+      "1896": 0,
+      "1900": 0,
+      "1904": 0
+    },
+    "Europa": {
+      "1896": 127,
+      "1900": 559,
+      "1904": 22
+    },
+    "Oceania": {
+      "1896": 4,
+      "1900": 3,
+      "1904": 0
+    },
+    "África": {
+      "1896": 0,
+      "1900": 0,
+      "1904": 0
+    },
+    "Ásia": {
+      "1896": 0,
+      "1900": 2,
+      "1904": 0
+    }
+  }
+}

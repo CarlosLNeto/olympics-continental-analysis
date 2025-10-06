@@ -1,0 +1,70 @@
+{
+  "dataset_name": "crescimento_stats_summer",
+  "description": "Estatísticas de crescimento de países participantes (medalhistas) nos Jogos de Verão por continente",
+  "source": "Calculado a partir de medals_integrated.parquet - agregação temporal de países que ganharam medalhas",
+  "creation_date": "2025-10-06 13:50:42",
+  "file_path": "gold/parte2/crescimento_stats_summer.parquet",
+  "format": "parquet",
+  "dimensions": {
+    "rows": 4,
+    "columns": 6
+  },
+  "columns": [
+    "Américas",
+    "Diversos",
+    "Europa",
+    "Oceania",
+    "África",
+    "Ásia"
+  ],
+  "dtypes": {
+    "Américas": "float64",
+    "Diversos": "float64",
+    "Europa": "float64",
+    "Oceania": "float64",
+    "África": "float64",
+    "Ásia": "float64"
+  },
+  "missing_values": {
+    "Américas": 0,
+    "Diversos": 0,
+    "Europa": 0,
+    "Oceania": 0,
+    "África": 0,
+    "Ásia": 0
+  },
+  "memory_usage_mb": 0.00041294097900390625,
+  "index_name": null,
+  "sample_values": {
+    "Américas": {
+      "mean": 8.766666666666667,
+      "std": 4.789955966490667,
+      "min": 1.0
+    },
+    "Diversos": {
+      "mean": 0.06666666666666667,
+      "std": 0.2537081317024624,
+      "min": 0.0
+    },
+    "Europa": {
+      "mean": 23.766666666666666,
+      "std": 9.342831784160863,
+      "min": 4.0
+    },
+    "Oceania": {
+      "mean": 1.9,
+      "std": 0.7119666788018509,
+      "min": 0.0
+    },
+    "África": {
+      "mean": 4.933333333333334,
+      "std": 4.471621886838217,
+      "min": 0.0
+    },
+    "Ásia": {
+      "mean": 8.233333333333333,
+      "std": 7.45415104596707,
+      "min": 0.0
+    }
+  }
+}

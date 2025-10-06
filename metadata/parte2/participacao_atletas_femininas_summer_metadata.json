@@ -1,0 +1,70 @@
+{
+  "dataset_name": "participacao_atletas_femininas_summer",
+  "description": "Percentual de ATLETAS femininas participantes nos Jogos de Verão (contagem única por atleta)",
+  "source": "Calculado a partir de medals_integrated.parquet usando athlete_id para contagem única",
+  "creation_date": "2025-10-06 13:50:42",
+  "file_path": "gold/parte2/participacao_atletas_femininas_summer.parquet",
+  "format": "parquet",
+  "dimensions": {
+    "rows": 29,
+    "columns": 6
+  },
+  "columns": [
+    "Américas",
+    "Diversos",
+    "Europa",
+    "Oceania",
+    "África",
+    "Ásia"
+  ],
+  "dtypes": {
+    "Américas": "float64",
+    "Diversos": "float64",
+    "Europa": "float64",
+    "Oceania": "float64",
+    "África": "float64",
+    "Ásia": "float64"
+  },
+  "missing_values": {
+    "Américas": 0,
+    "Diversos": 0,
+    "Europa": 0,
+    "Oceania": 0,
+    "África": 0,
+    "Ásia": 0
+  },
+  "memory_usage_mb": 0.00154876708984375,
+  "index_name": "game_year",
+  "sample_values": {
+    "Américas": {
+      "1900": 4.444444444444445,
+      "1904": 1.41643059490085,
+      "1908": 0.0
+    },
+    "Diversos": {
+      "1900": 0.0,
+      "1904": 0.0,
+      "1908": 0.0
+    },
+    "Europa": {
+      "1900": 1.5945330296127564,
+      "1904": 0.0,
+      "1908": 2.1337126600284493
+    },
+    "Oceania": {
+      "1900": 0.0,
+      "1904": 0.0,
+      "1908": 0.0
+    },
+    "África": {
+      "1900": 0.0,
+      "1904": 0.0,
+      "1908": 0.0
+    },
+    "Ásia": {
+      "1900": 0.0,
+      "1904": 0.0,
+      "1908": 0.0
+    }
+  }
+}

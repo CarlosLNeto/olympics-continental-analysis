@@ -1,0 +1,54 @@
+{
+  "dataset_name": "participacao_feminina_winter",
+  "description": "Percentual de medalhas conquistadas por mulheres nos Jogos de Inverno por continente e ano",
+  "source": "Calculado a partir de medals_integrated.parquet - proporção de medalhas femininas",
+  "creation_date": "2025-10-06 13:50:42",
+  "file_path": "gold/parte2/participacao_feminina_winter.parquet",
+  "format": "parquet",
+  "dimensions": {
+    "rows": 24,
+    "columns": 4
+  },
+  "columns": [
+    "Américas",
+    "Europa",
+    "Oceania",
+    "Ásia"
+  ],
+  "dtypes": {
+    "Américas": "float64",
+    "Europa": "float64",
+    "Oceania": "float64",
+    "Ásia": "float64"
+  },
+  "missing_values": {
+    "Américas": 0,
+    "Europa": 0,
+    "Oceania": 0,
+    "Ásia": 0
+  },
+  "memory_usage_mb": 0.00091552734375,
+  "index_name": "game_year",
+  "sample_values": {
+    "Américas": {
+      "1924": 4.3478260869565215,
+      "1928": 3.7037037037037033,
+      "1932": 3.7037037037037033
+    },
+    "Europa": {
+      "1924": 4.23728813559322,
+      "1928": 7.936507936507936,
+      "1932": 10.526315789473683
+    },
+    "Oceania": {
+      "1924": 0.0,
+      "1928": 0.0,
+      "1932": 0.0
+    },
+    "Ásia": {
+      "1924": 0.0,
+      "1928": 0.0,
+      "1932": 0.0
+    }
+  }
+}

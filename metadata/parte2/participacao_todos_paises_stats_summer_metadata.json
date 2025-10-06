@@ -1,0 +1,70 @@
+{
+  "dataset_name": "participacao_todos_paises_stats_summer",
+  "description": "Estatísticas de participação de TODOS os países nos Jogos de Verão (média, desvio, min, max)",
+  "source": "Estatísticas calculadas a partir de participacao_todos_paises_summer.parquet",
+  "creation_date": "2025-10-06 13:50:42",
+  "file_path": "gold/parte2/participacao_todos_paises_stats_summer.parquet",
+  "format": "parquet",
+  "dimensions": {
+    "rows": 4,
+    "columns": 6
+  },
+  "columns": [
+    "Américas",
+    "Diversos",
+    "Europa",
+    "Oceania",
+    "África",
+    "Ásia"
+  ],
+  "dtypes": {
+    "Américas": "float64",
+    "Diversos": "float64",
+    "Europa": "float64",
+    "Oceania": "float64",
+    "África": "float64",
+    "Ásia": "float64"
+  },
+  "missing_values": {
+    "Américas": 0,
+    "Diversos": 0,
+    "Europa": 0,
+    "Oceania": 0,
+    "África": 0,
+    "Ásia": 0
+  },
+  "memory_usage_mb": 0.00041294097900390625,
+  "index_name": null,
+  "sample_values": {
+    "Américas": {
+      "mean": 23.766666666666666,
+      "std": 15.171850825501295,
+      "min": 1.0
+    },
+    "Diversos": {
+      "mean": 0.13333333333333333,
+      "std": 0.34574590364176044,
+      "min": 0.0
+    },
+    "Europa": {
+      "mean": 31.933333333333334,
+      "std": 12.39280473482102,
+      "min": 5.0
+    },
+    "Oceania": {
+      "mean": 6.466666666666667,
+      "std": 6.268329444356646,
+      "min": 1.0
+    },
+    "África": {
+      "mean": 23.0,
+      "std": 22.52967391900184,
+      "min": 0.0
+    },
+    "Ásia": {
+      "mean": 20.3,
+      "std": 16.817786151407763,
+      "min": 0.0
+    }
+  }
+}
