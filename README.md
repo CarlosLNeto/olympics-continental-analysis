@@ -81,9 +81,47 @@ Dados oficiais das Olimpíadas mais recentes:
 - ✅ Tabelas HTML interativas e CSV para Excel
 - ✅ Gráficos PNG em alta resolução (300 DPI)
 
-### 📊 Parte 2: (A ser definido)
+### 📊 Parte 2: Análise de Medalhas por Continente (1896-2024)
 
-Aguardando implementação. Usará os mesmos dados brutos de `raw/`.
+> **✨ Análise Continental Completa:** Distribuição, crescimento e participação por continente
+
+**Cinco análises completas com visualizações profissionais:**
+
+1. **🌍 Distribuição Total por Continente**
+   - Gráfico de pizza mostrando % de medalhas por continente
+   - Europa lidera com maior concentração de medalhas
+   - Separação entre Jogos de Verão e Inverno
+
+2. **📈 Crescimento da Representação**
+   - **Medalhistas**: Países que ganharam medalhas ao longo do tempo
+   - **Participantes**: TODOS os países que participaram (novo!)
+   - Análise comparativa revela democratização das Olimpíadas
+
+3. **👩 Participação Feminina**
+   - Evolução do percentual de medalhas conquistadas por mulheres
+   - Análise por continente e por temporada (Verão/Inverno)
+   - Crescimento significativo desde 1896
+
+4. **🥋 Modalidades Fortes por Continente**
+   - Top modalidades de cada continente
+   - Identificação de especializações regionais
+
+5. **📊 Crescimento em Medalhas (1896-2024)**
+   - Análise de crescimento por período histórico
+   - Comparação entre continentes
+
+**Características:**
+- ✅ Dados integrados: 316K+ resultados históricos + Paris 2024
+- ✅ Dois tipos de gráficos: Medalhistas vs Participantes
+- ✅ Insight importante: Brasil participa dos Jogos de Inverno desde 1992!
+- ✅ Gráficos em alta resolução (300 DPI)
+- ✅ Dados salvos em Parquet para análises futuras
+
+**🔍 Descoberta Principal:**
+- **Jogos de Inverno 2022 - Américas:**
+  - 15 países PARTICIPARAM (incluindo Brasil 🇧🇷)
+  - Apenas 2 países GANHARAM medalhas (EUA e Canadá)
+  - Diferença revela democratização da participação vs concentração de medalhas
 
 ## 📂 Estrutura do Projeto
 
@@ -91,48 +129,52 @@ Aguardando implementação. Usará os mesmos dados brutos de `raw/`.
 AnalisesPorContinente/
 │
 ├── raw/                              # CAMADA RAW
-│   ├── parte1/                       # Dados Parte 1
-│   │   ├── Olympics_1896_2022/
-│   │   └── Olympics_Paris2024/
-│   └── parte2/                       # Dados Parte 2 (vazio)
+│   └── Olympics_1896_2022/          # Dados históricos compartilhados
+│       └── Olympics_Paris2024/       # Dados Paris 2024 compartilhados
 │
 ├── bronze/                           # CAMADA BRONZE (Parquet)
 │   ├── parte1/
 │   │   └── medals_integrated_1896_2024.parquet
-│   └── parte2/                       # (vazio)
+│   └── parte2/
+│       └── medals_integrated.parquet
 │
 ├── gold/                             # CAMADA GOLD (Parquet)
 │   ├── parte1/
 │   │   ├── medals_summer.parquet
 │   │   ├── medals_winter.parquet
 │   │   └── medals_total.parquet
-│   └── parte2/                       # (vazio)
+│   └── parte2/
+│       ├── medals_por_continente.parquet
+│       ├── medals_evolucao_temporal_*.parquet
+│       ├── participacao_*.parquet
+│       └── crescimento_*.parquet
 │
 ├── code/                             # NOTEBOOKS
 │   ├── parte1/
-│   │   ├── parte1_analise_medalhas.ipynb  # 🎯 Notebook Principal
+│   │   ├── parte1_analise_medalhas.ipynb  # 🎯 Análise Medalhas
 │   │   ├── check_parquet.py
 │   │   └── README.md
-│   └── parte2/                       # (vazio)
+│   └── parte2/
+│       ├── parte2_analise_continentes.ipynb  # 🎯 Análise Continentes
+│       └── noc_to_continent.py
 │
 ├── metadata/                         # METADADOS (JSON)
-│   ├── parte1/
-│   │   ├── medals_summer_metadata.json
-│   │   ├── medals_winter_metadata.json
-│   │   └── medals_total_metadata.json
-│   └── parte2/                       # (vazio)
+│   ├── parte1/ ...
+│   └── parte2/ ...
 │
 ├── outputs/                          # OUTPUTS (não segue camadas)
 │   ├── figures/                      # Gráficos PNG
-│   │   ├── top50_summer.png
-│   │   ├── top50_winter.png
-│   │   └── top50_total.png
+│   │   ├── [Parte 1] top50_*.png
+│   │   ├── [Parte 2] parte2_pizza_continente.png
+│   │   ├── [Parte 2] parte2_evolucao_continente.png
+│   │   ├── [Parte 2] parte2_crescimento_representacao.png
+│   │   ├── [Parte 2] parte2_participacao_todos_paises.png  # NOVO!
+│   │   └── [Parte 2] parte2_participacao_*.png
 │   └── tables/                       # Tabelas HTML/CSV
-│       ├── medals_*_full.html
-│       └── medals_*.csv
+│       └── medals_*.{html,csv}
 │
 ├── 📄 README.md                      # Este arquivo
-├── 📄 ESTRUTURA.md                   # Documentação da arquitetura
+├── 📄 create_participation_graphs.py # Script reutilizável
 ├── 📄 requirements.txt               # Dependências
 └── 📄 .gitignore
 ```
@@ -159,10 +201,9 @@ open outputs/figures/top50_summer.png
 open outputs/tables/medals_summer.csv  # Excel/LibreOffice
 ```
 
-### 🔄 Opção 2: Executar Parte 1
+### 🔄 Opção 2: Executar Análises
 
-Para re-executar ou modificar a análise:
-
+#### Parte 1: Análise de Medalhas por País
 ```bash
 # 1. Instalar dependências
 pip install -r requirements.txt
@@ -175,8 +216,30 @@ jupyter notebook
 
 # 4. Executar: Cell → Run All
 ```
-
 **⏱️ Tempo estimado:** 2-5 minutos
+
+#### Parte 2: Análise de Medalhas por Continente  
+```bash
+# 1. Abrir Jupyter (se ainda não estiver aberto)
+jupyter notebook
+
+# 2. Navegar e abrir:
+#    code/parte2/parte2_analise_continentes.ipynb
+
+# 3. IMPORTANTE: Verificar que o kernel é "Python 3.11"
+#    (canto superior direito do notebook)
+
+# 4. Executar: Kernel → Restart & Run All
+```
+**⏱️ Tempo estimado:** 3-7 minutos  
+**⚠️ Nota:** Use sempre "Restart & Run All" para garantir execução correta
+
+#### Script Independente: Gráficos de Participação
+```bash
+# Gerar gráficos de participação (todos os países)
+python3.11 create_participation_graphs.py
+```
+**⏱️ Tempo estimado:** 1-2 minutos
 
 ### ⚙️ Pré-requisitos
 
@@ -201,6 +264,16 @@ jupyter notebook
 | 2º  | União Soviética | URS | 473 | 376 | 355 | **1,204** |
 | 3º  | Alemanha | GER | 367 | 390 | 374 | **1,131** |
 
+### 🌍 Distribuição por Continente (Total Geral)
+
+| Continente | % Medalhas | Características |
+|------------|-----------|-----------------|
+| 🇪🇺 **Europa** | ~55% | Domínio histórico, tradição esportiva |
+| 🌎 **Américas** | ~25% | Lideradas por EUA, crescimento sul-americano |
+| 🌏 **Ásia** | ~15% | Crescimento acelerado, China e Japão fortes |
+| 🌍 **África** | ~3% | Concentração em atletismo e futebol |
+| 🌊 **Oceania** | ~2% | Austrália domina a região |
+
 ### 🌎 Destaque: Brasil e Cuba
 
 | País | Ranking | 🥇 Ouro | 🥈 Prata | 🥉 Bronze | Total |
@@ -210,24 +283,46 @@ jupyter notebook
 
 > 💡 **Incluindo Paris 2024:** Brasil conquistou 20 medalhas (3🥇 7🥈 10🥉) em Paris 2024!
 
+### ❄️ Brasil nos Jogos de Inverno
+
+- **Participa desde:** 1992 (Albertville)
+- **Medalhas conquistadas:** 0
+- **Insight importante:** Brasil está entre os 15 países das Américas que participam dos Jogos de Inverno, mas ainda não conquistou medalhas
+- **Diferença:** Participação ≠ Medalhas (democratização vs desempenho competitivo)
+
 ### 📊 Visualizações Disponíveis
 
-Todos os resultados estão salvos e prontos para uso:
+**Parte 1 - Análise por País:**
 
-**🖼️ Gráficos (PNG - Alta Resolução):**
+🖼️ **Gráficos (PNG - Alta Resolução):**
 - `outputs/figures/top50_summer.png` - Top 50 países em Jogos de Verão
 - `outputs/figures/top50_winter.png` - Top 50 países em Jogos de Inverno
 - `outputs/figures/top50_total.png` - Top 50 países no Total Geral
 
-**📋 Tabelas (CSV - Prontas para Excel):**
+📋 **Tabelas (CSV - Prontas para Excel):**
 - `outputs/tables/medals_summer.csv` - Ranking completo Jogos de Verão
 - `outputs/tables/medals_winter.csv` - Ranking completo Jogos de Inverno
 - `outputs/tables/medals_total.csv` - Ranking completo Total Geral
 
-**💾 Dados Processados (Parquet - Para análises):**
-- `gold/medals_summer.parquet` + metadados
-- `gold/medals_winter.parquet` + metadados
-- `gold/medals_total.parquet` + metadados
+**Parte 2 - Análise por Continente:**
+
+🖼️ **Gráficos (PNG - Alta Resolução):**
+- `outputs/figures/parte2_pizza_continente.png` - Distribuição por continente
+- `outputs/figures/parte2_evolucao_continente.png` - Evolução temporal
+- `outputs/figures/parte2_crescimento_representacao.png` - Países medalhistas
+- `outputs/figures/parte2_participacao_todos_paises.png` - **TODOS** os países participantes
+- `outputs/figures/parte2_participacao_feminina.png` - Participação feminina
+- `outputs/figures/parte2_participacao_atletas_femininas.png` - Atletas femininas
+
+📊 **Comparação Importante:**
+- **parte2_crescimento_representacao.png**: Apenas países que GANHARAM medalhas
+- **parte2_participacao_todos_paises.png**: TODOS os países participantes
+- **Diferença**: Revela democratização da participação vs concentração de medalhas
+
+💾 **Dados Processados (Parquet - Para análises):**
+- `gold/parte1/medals_*.parquet` + metadados
+- `gold/parte2/medals_*.parquet` + metadados
+- `gold/parte2/participacao_*.parquet` + metadados
 
 ## 🛠️ Tecnologias Utilizadas
 
