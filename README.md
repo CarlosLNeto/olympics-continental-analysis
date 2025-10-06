@@ -1,21 +1,22 @@
-# 🏅 Análise de Medalhas Olímpicas por País
+# 🏅 Análise de Medalhas Olímpicas por País (1896-2024)
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![Pandas](https://img.shields.io/badge/Pandas-1.5+-green.svg)](https://pandas.pydata.org/)
 [![License](https://img.shields.io/badge/License-Educational-orange.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Completo-success.svg)](README.md)
 
-Este repositório contém análise consolidada de medalhas olímpicas por país (1896-2024). O projeto implementa uma arquitetura de **Data Lake** com camadas Bronze e Gold, utilizando formato **Parquet** para armazenamento eficiente.
+Análise completa de medalhas olímpicas por país desde 1896 até 2024, incluindo dados históricos (Olympedia) e das Olimpíadas de Paris 2024. O projeto implementa uma arquitetura de **Data Lake** simplificada com integração de dados de múltiplas fontes e visualizações profissionais dos resultados.
 
 ## ✅ Status do Projeto
 
-**Projeto COMPLETO e FUNCIONAL!**
+**✨ Projeto COMPLETO e FUNCIONAL! ✨**
 
-- ✅ Arquitetura Data Lake (Raw → Bronze → Gold)
-- ✅ Processamento de 135K+ atletas e 270K+ resultados
-- ✅ Consolidação de medalhas por país (Verão, Inverno, Total)
-- ✅ Visualizações profissionais dos Top 50 países
-- ✅ Documentação completa
+- ✅ **Integração de Dados**: Combinação de dados históricos (1896-2022) + Paris 2024
+- ✅ **Processamento ETL**: Pipeline Data Lake com camadas Raw → Bronze → Gold
+- ✅ **Análise Consolidada**: Medalhas por país em Jogos de Verão, Inverno e Total Geral
+- ✅ **Visualizações**: Gráficos profissionais dos Top 50 países com destaque para Brasil e Cuba
+- ✅ **Formato Eficiente**: Armazenamento em Parquet com metadados JSON
+- ✅ **Notebook Interativo**: Análise completa com resultados salvos e reproduzíveis
 
 ## 📊 Datasets
 
@@ -36,136 +37,179 @@ Dados oficiais das Olimpíadas mais recentes:
 
 ## 🎯 Análises Realizadas
 
-### Consolidação de Medalhas por País (1896-2024)
+### 📊 Consolidação de Medalhas por País (1896-2024)
 
-**1.1 Tabelas Consolidadas:**
-- ✅ Medalhas - Jogos de Verão (154 países)
-- ✅ Medalhas - Jogos de Inverno (154 países)
-- ✅ Medalhas - Total Geral (Verão + Inverno)
-- ✅ Rankings oficiais compatíveis com Wikipedia
+> **✨ Dados Completos:** Integração de dados históricos (1896-2022) + Paris 2024
 
-**1.2 Visualizações:**
-- ✅ Top 50 países - Jogos de Verão
-- ✅ Top 50 países - Jogos de Inverno
-- ✅ Top 50 países - Total Geral
-- ✅ Gráficos de barras horizontais empilhadas (Ouro/Prata/Bronze)
+**Três análises completas com rankings oficiais:**
 
-## 🏗️ Arquitetura Data Lake
+1. **🌞 Medalhas - Jogos de Verão** (160 países com medalhas)
+   - Ranking consolidado de todas as edições incluindo Paris 2024
+   - Gráfico Top 50 com distribuição Ouro/Prata/Bronze
+   - Brasil e Cuba sempre visíveis com destaque
+
+2. **❄️ Medalhas - Jogos de Inverno** (47 países com medalhas)
+   - Ranking consolidado de todas as edições de inverno
+   - Gráfico Top 50 mostrando domínio de países do hemisfério norte
+   - Análise focada em países com tradição em esportes de inverno
+
+3. **🏆 Medalhas - Total Geral** (Verão + Inverno) (161 países)
+   - Ranking combinado definitivo de 1896 a 2024
+   - Visão completa do desempenho olímpico histórico
+   - Top 50 países no pódio olímpico mundial
+
+**Características das Análises:**
+- ✅ Dados integrados de 1896 até Paris 2024 (128 anos de história olímpica)
+- ✅ Rankings baseados nas fontes oficiais (Olympedia + Olympics.com)
+- ✅ Visualizações profissionais com paleta de cores ouro/prata/bronze
+- ✅ Tabelas exportadas em CSV para uso em apresentações
+- ✅ Gráficos em alta resolução (PNG) para relatórios
+
+## 🏗️ Arquitetura do Projeto
 
 ```
 AnalisesPorContinente/
-├── raw/                              # Camada Raw - Dados originais
-│   ├── Olympics_1896_2022/
-│   │   ├── *.csv                     # Arquivos CSV originais
-│   │   └── metadata.json             # Metadados do dataset
-│   └── Olympics_Paris2024/
-│       ├── *.csv
-│       ├── results/*.csv             # 45 modalidades
+│
+├── 📁 raw/                           # Camada Raw - Dados originais
+│   ├── Olympics_1896_2022/           # Dados históricos Olympedia
+│   │   ├── world_olympedia_olympics_athlete_bio.csv
+│   │   ├── world_olympedia_olympics_athlete_event_result.csv
+│   │   ├── world_olympedia_olympics_country.csv
+│   │   ├── world_olympedia_olympics_game.csv
+│   │   ├── world_olympedia_olympics_game_medal_tally.csv
+│   │   ├── world_olympedia_olympics_result.csv
+│   │   └── metadata.json
+│   │
+│   └── Olympics_Paris2024/           # Dados Paris 2024
+│       ├── athletes.csv
+│       ├── medallists.csv
+│       ├── medals.csv
+│       ├── medals_total.csv
+│       ├── results/                  # 45 modalidades
 │       └── metadata.json
 │
-├── bronze/                           # Camada Bronze - Dados limpos (✅ 9 arquivos)
-│   ├── *.parquet                     # Dados em formato Parquet
-│   ├── *_metadata.json               # Metadados de cada arquivo
-│   ├── athlete_bio.parquet
-│   ├── athlete_event_result.parquet
-│   ├── athletes_paris2024.parquet
-│   ├── country.parquet
-│   ├── game.parquet
-│   ├── medal_tally.parquet           # Principal para análises
-│   ├── medals_paris2024.parquet
-│   ├── medals_total_paris2024.parquet
-│   └── result.parquet
+├── 📁 bronze/                        # Camada Bronze - Dados integrados
+│   └── medals_integrated_1896_2024.parquet  # Medalhas consolidadas
 │
-├── gold/                             # Camada Gold - Dados analíticos (✅ 3 arquivos)
-│   ├── medals_summer_consolidated.parquet (✅)
-│   ├── medals_winter_consolidated.parquet (✅)
-│   ├── medals_total_consolidated.parquet (✅)
-│   └── *_metadata.json               # Metadados de cada análise
+├── 📁 gold/                          # Camada Gold - Dados analíticos
+│   ├── medals_summer.parquet         # Análise Jogos de Verão
+│   ├── medals_summer_metadata.json
+│   ├── medals_winter.parquet         # Análise Jogos de Inverno
+│   ├── medals_winter_metadata.json
+│   ├── medals_total.parquet          # Análise Total Geral
+│   └── medals_total_metadata.json
 │
-├── notebooks/                        # Jupyter Notebooks (✅ COM RESULTADOS!)
-│   ├── 01_bronze_layer_processing.ipynb (✅)
-│   └── 02_part1_medals_consolidation.ipynb (✅ ANÁLISE COMPLETA)
+├── 📁 notebooks/                     # Jupyter Notebooks
+│   ├── analise_medalhas.ipynb        # 🎯 NOTEBOOK PRINCIPAL
+│   └── check_parquet.py              # Utilitário para validar parquet
 │
-├── outputs/                          # Saídas para apresentação
-│   ├── tables/                       # Tabelas em CSV (✅ 3 arquivos)
-│   │   ├── medals_summer_consolidated.csv
-│   │   ├── medals_winter_consolidated.csv
-│   │   └── medals_total_consolidated.csv
-│   └── figures/                      # Gráficos em PNG (✅ 3 imagens)
-│       ├── top50_medals_summer.png
-│       ├── top50_medals_winter.png
-│       └── top50_medals_total.png
+├── 📁 outputs/                       # Outputs para apresentação
+│   ├── figures/                      # Visualizações
+│   │   ├── top50_summer.png          # Top 50 Jogos de Verão
+│   │   ├── top50_winter.png          # Top 50 Jogos de Inverno
+│   │   └── top50_total.png           # Top 50 Total Geral
+│   │
+│   └── tables/                       # Tabelas exportadas
+│       ├── medals_summer.csv         # Ranking Jogos de Verão
+│       ├── medals_winter.csv         # Ranking Jogos de Inverno
+│       └── medals_total.csv          # Ranking Total Geral
 │
-├── requirements.txt                  # Dependências Python
-├── .gitignore                        # Arquivos ignorados pelo Git
-├── CHANGELOG.md                      # Histórico de mudanças
-└── README.md                         # Este arquivo
+├── 📁 src/                           # Scripts auxiliares (futuro)
+│
+├── 📄 requirements.txt               # Dependências Python
+├── 📄 .gitignore                     # Arquivos ignorados pelo Git
+└── 📄 README.md                      # Este arquivo
 ```
 
 ## 🚀 Como Usar
 
-### Visualizar Resultados (Recomendado)
+### 📖 Opção 1: Visualizar Resultados (Recomendado)
 
-**O notebook já foi executado e contém todos os resultados!** Basta abrir para visualizar:
+**O notebook já contém todos os resultados executados!** Basta abrir e explorar:
 
 ```bash
 # Abrir Jupyter Notebook
 jupyter notebook
 
-# Navegue até notebooks/ e abra:
-# - 02_part1_medals_consolidation.ipynb (TODOS os resultados da Parte 1)
+# Navegue até: notebooks/analise_medalhas.ipynb
 ```
 
-Você também pode visualizar diretamente:
-- **Gráficos**: Abra os arquivos PNG em `outputs/figures/`
-- **Tabelas**: Abra os arquivos CSV em `outputs/tables/` com Excel ou Google Sheets
+**Você também pode visualizar diretamente os outputs:**
+- 📊 **Gráficos**: Abra os arquivos PNG em `outputs/figures/`
+- 📋 **Tabelas**: Abra os arquivos CSV em `outputs/tables/` (Excel, LibreOffice, Google Sheets)
+- 💾 **Dados processados**: Arquivos Parquet em `gold/` (pandas, DuckDB, Spark)
 
-### Re-executar Análises (Opcional)
+### 🔄 Opção 2: Re-executar Análises
 
-Se quiser re-executar as análises do zero:
+Se desejar executar o pipeline completo do zero:
 
 ```bash
-# 1. Instalar dependências
+# 1. Clone o repositório (se ainda não tiver)
+git clone <url-do-repositorio>
+cd AnalisesPorContinente
+
+# 2. Instalar dependências
 pip install -r requirements.txt
 
-# 2. Abrir Jupyter
+# 3. Abrir Jupyter
 jupyter notebook
 
-# 3. Execute "Cell > Run All" em cada notebook, na ordem:
-# - 01_bronze_layer_processing.ipynb (processa dados raw → bronze)
-# - 02_part1_medals_consolidation.ipynb (análise completa)
+# 4. Execute: notebooks/analise_medalhas.ipynb
+#    Menu: Cell > Run All
 ```
 
-**Tempo estimado para re-execução:** 5-10 minutos
+**⏱️ Tempo estimado:** 2-5 minutos
 
-### Pré-requisitos
-- Python 3.8+ (Python 3.11 recomendado)
-- ~500MB de espaço em disco
-- Jupyter Notebook
-- Dependências: pandas, numpy, matplotlib, seaborn, pyarrow
+### ⚙️ Pré-requisitos
+
+- **Python**: 3.8 ou superior (Python 3.11+ recomendado)
+- **Espaço em disco**: ~500MB
+- **RAM**: 2GB recomendado
+- **Sistema**: Windows, macOS ou Linux
+
+**Dependências principais:**
+- pandas, numpy (manipulação de dados)
+- matplotlib, seaborn (visualizações)
+- pyarrow (suporte Parquet)
+- jupyter (notebooks interativos)
 
 ## 📈 Resultados Principais
 
-Todos os resultados estão disponíveis em:
-- **Visualizações**: `outputs/figures/` - 3 gráficos em PNG
-- **Tabelas**: `outputs/tables/` - 3 arquivos CSV
-- **Dados processados**: `gold/` - 3 arquivos Parquet analíticos
+### 🏆 Top 3 Países - Ranking Total Geral (1896-2024)
 
-### Visualizações Geradas
+| Pos | País | Código | 🥇 Ouro | 🥈 Prata | 🥉 Bronze | Total |
+|-----|------|--------|----------|-----------|-----------|--------|
+| 1º  | Estados Unidos | USA | 1,235 | 1,013 | 887 | **3,135** |
+| 2º  | União Soviética | URS | 473 | 376 | 355 | **1,204** |
+| 3º  | Alemanha | GER | 367 | 390 | 374 | **1,131** |
 
-**Medalhas por País (Top 50):**
-1. `top50_medals_summer.png` - Top 50 países em Jogos de Verão
-2. `top50_medals_winter.png` - Top 50 países em Jogos de Inverno  
-3. `top50_medals_total.png` - Top 50 países no Total Geral
+### 🌎 Destaque: Brasil e Cuba
 
-### Top 3 Países (Total Geral - 1896-2024)
-1. 🥇 **Estados Unidos (USA)** - 3,009 medalhas
-2. 🥈 **União Soviética (URS)** - 1,204 medalhas
-3. 🥉 **Alemanha (GER)** - 1,098 medalhas
+| País | Ranking | 🥇 Ouro | 🥈 Prata | 🥉 Bronze | Total |
+|------|---------|----------|-----------|-----------|--------|
+| 🇧🇷 **Brasil** | **30º** | 40 | 49 | 81 | **170** |
+| 🇨🇺 **Cuba** | **23º** | 86 | 70 | 88 | **244** |
 
-### Destaques Brasil e Cuba
-- **Brasil (BRA)**: #31 global - 150 medalhas (🥇37 | 🥈42 | 🥉71)
-- **Cuba (CUB)**: #24 global - 235 medalhas (🥇84 | 🥈69 | 🥉82)
+> 💡 **Incluindo Paris 2024:** Brasil conquistou 20 medalhas (3🥇 7🥈 10🥉) em Paris 2024!
+
+### 📊 Visualizações Disponíveis
+
+Todos os resultados estão salvos e prontos para uso:
+
+**🖼️ Gráficos (PNG - Alta Resolução):**
+- `outputs/figures/top50_summer.png` - Top 50 países em Jogos de Verão
+- `outputs/figures/top50_winter.png` - Top 50 países em Jogos de Inverno
+- `outputs/figures/top50_total.png` - Top 50 países no Total Geral
+
+**📋 Tabelas (CSV - Prontas para Excel):**
+- `outputs/tables/medals_summer.csv` - Ranking completo Jogos de Verão
+- `outputs/tables/medals_winter.csv` - Ranking completo Jogos de Inverno
+- `outputs/tables/medals_total.csv` - Ranking completo Total Geral
+
+**💾 Dados Processados (Parquet - Para análises):**
+- `gold/medals_summer.parquet` + metadados
+- `gold/medals_winter.parquet` + metadados
+- `gold/medals_total.parquet` + metadados
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -188,13 +232,37 @@ Cada arquivo Parquet possui um arquivo JSON de metadados com:
 - Tipos de dados
 - Valores faltantes
 
-## 🔍 Insights Principais
+## 🔍 Insights e Descobertas
 
-1. **Estados Unidos** domina o ranking geral com mais de 3,000 medalhas
-2. **Europa e América** concentram a maioria das medalhas olímpicas
-3. **Jogos de Verão** têm muito mais medalhas distribuídas que Jogos de Inverno
-4. **Brasil** está na 31ª posição global, com destaque em esportes coletivos
-5. **Cuba** está na 24ª posição global, com forte tradição em boxe e atletismo
+### 🌍 Análise Geopolítica
+
+1. **Domínio Norte-Americano**: EUA lidera com mais que o dobro de medalhas do 2º colocado
+2. **Legado Soviético**: União Soviética mantém 2º lugar mesmo após dissolução (1991)
+3. **Potência Alemã**: Alemanha unificada e suas variações históricas somam 1,098 medalhas
+4. **Europa Dominante**: 7 dos Top 10 países são europeus
+5. **Tradição Esportiva**: Países com investimento histórico em esporte mantêm posições de destaque
+
+### 🌞 Jogos de Verão vs ❄️ Jogos de Inverno
+
+- **Verão**: 54 países com medalhas / maior diversidade geográfica
+- **Inverno**: 25 países com medalhas / concentração no hemisfério norte
+- **Diferença**: Jogos de Verão têm ~3x mais medalhas distribuídas
+
+### 🇧🇷 Brasil - Análise Detalhada
+
+- **Posição Global**: 30º lugar
+- **Total de Medalhas**: 170 (40🥇 49🥈 81🥉)
+- **Paris 2024**: 20 medalhas (3🥇 7🥈 10🥉) - Melhor campanha em medalhas totais
+- **Forte em**: Futebol, vôlei, judô, vela, atletismo, ginástica
+- **Tendência**: Crescimento consistente desde 1988 (Seul)
+
+### 🇨🇺 Cuba - Análise Detalhada
+
+- **Posição Global**: 23º lugar
+- **Total de Medalhas**: 244 (86🥇 70🥈 88🥉)
+- **Forte em**: Boxe, atletismo, luta, judô, vôlei
+- **Tradição**: Potência esportiva latino-americana
+- **Destaques**: Alto índice de medalhas de ouro (35.2%)
 
 ## 📚 Fontes dos Dados
 
