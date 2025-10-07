@@ -1,0 +1,110 @@
+{
+  "dataset_name": "medals_integrated_1896_2024",
+  "description": "Dataset integrado de todas as medalhas olímpicas de 1896 a 2024, incluindo informações de atletas, países, modalidades e continentes",
+  "source": "Integração dos dados brutos Olympics_1896_2022 e Olympics_Paris2024 com mapeamento de países para continentes",
+  "creation_date": "2025-10-06 16:20:27",
+  "file_path": "bronze/parte1/medals_integrated_1896_2024.parquet",
+  "format": "parquet",
+  "dimensions": {
+    "rows": 1893,
+    "columns": 11
+  },
+  "columns": [
+    "year",
+    "edition",
+    "edition_id",
+    "country",
+    "country_noc",
+    "gold",
+    "silver",
+    "bronze",
+    "total",
+    "season",
+    "country_long"
+  ],
+  "dtypes": {
+    "year": "int64",
+    "edition": "object",
+    "edition_id": "int64",
+    "country": "object",
+    "country_noc": "object",
+    "gold": "int64",
+    "silver": "int64",
+    "bronze": "int64",
+    "total": "int64",
+    "season": "object",
+    "country_long": "object"
+  },
+  "missing_values": {
+    "year": 0,
+    "edition": 0,
+    "edition_id": 0,
+    "country": 0,
+    "country_noc": 0,
+    "gold": 0,
+    "silver": 0,
+    "bronze": 0,
+    "total": 0,
+    "season": 0,
+    "country_long": 1801
+  },
+  "memory_usage_mb": 0.5557336807250977,
+  "index_name": null,
+  "sample_values": {
+    "year": {
+      "0": 1896,
+      "1": 1900,
+      "2": 1900
+    },
+    "edition": {
+      "0": "1896 Summer Olympics",
+      "1": "1900 Summer Olympics",
+      "2": "1900 Summer Olympics"
+    },
+    "edition_id": {
+      "0": 1,
+      "1": 2,
+      "2": 2
+    },
+    "country": {
+      "0": "Greece",
+      "1": "France",
+      "2": "United States"
+    },
+    "country_noc": {
+      "0": "GRE",
+      "1": "FRA",
+      "2": "USA"
+    },
+    "gold": {
+      "0": 10,
+      "1": 31,
+      "2": 20
+    },
+    "silver": {
+      "0": 18,
+      "1": 41,
+      "2": 13
+    },
+    "bronze": {
+      "0": 19,
+      "1": 40,
+      "2": 15
+    },
+    "total": {
+      "0": 47,
+      "1": 112,
+      "2": 48
+    },
+    "season": {
+      "0": "Summer",
+      "1": "Summer",
+      "2": "Summer"
+    },
+    "country_long": {
+      "0": null,
+      "1": null,
+      "2": null
+    }
+  }
+}

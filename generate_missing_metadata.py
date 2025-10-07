@@ -11,12 +11,16 @@ from datetime import datetime
 # Paths
 BASE_PATH = Path.cwd()
 GOLD_PATH = BASE_PATH / 'gold' / 'parte2'
-METADATA_PATH = BASE_PATH / 'metadata' / 'parte2'
+BRONZE_PATH_PARTE1 = BASE_PATH / 'bronze' / 'parte1'
+BRONZE_PATH_PARTE2 = BASE_PATH / 'bronze' / 'parte2'
+METADATA_PATH_PARTE1 = BASE_PATH / 'metadata' / 'parte1'
+METADATA_PATH_PARTE2 = BASE_PATH / 'metadata' / 'parte2'
 
-# Criar diretório de metadados se não existir
-METADATA_PATH.mkdir(parents=True, exist_ok=True)
+# Criar diretórios de metadados se não existirem
+METADATA_PATH_PARTE1.mkdir(parents=True, exist_ok=True)
+METADATA_PATH_PARTE2.mkdir(parents=True, exist_ok=True)
 
-def generate_metadata(parquet_file, description, source):
+def generate_metadata(parquet_file, description, source, file_path_prefix):
     """Gera metadados para um arquivo parquet"""
     
     # Carregar parquet
@@ -31,7 +35,7 @@ def generate_metadata(parquet_file, description, source):
         "description": description,
         "source": source,
         "creation_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "file_path": f"gold/parte2/{parquet_file.name}",
+        "file_path": f"{file_path_prefix}/{parquet_file.name}",
         "format": "parquet",
         "dimensions": {
             "rows": len(df),
@@ -48,7 +52,9 @@ def generate_metadata(parquet_file, description, source):
     return metadata
 
 # Definir descrições para cada dataset
-datasets_info = {
+
+# Datasets da pasta Gold (parte2)
+gold_datasets_info = {
     "crescimento_stats_summer": {
         "description": "Estatísticas de crescimento de países participantes (medalhistas) nos Jogos de Verão por continente",
         "source": "Calculado a partir de medals_integrated.parquet - agregação temporal de países que ganharam medalhas"
@@ -115,69 +121,133 @@ datasets_info = {
     },
 }
 
+# Datasets da pasta Bronze
+bronze_datasets_info = {
+    "medals_integrated_1896_2024": {
+        "description": "Dataset integrado de todas as medalhas olímpicas de 1896 a 2024, incluindo informações de atletas, países, modalidades e continentes",
+        "source": "Integração dos dados brutos Olympics_1896_2022 e Olympics_Paris2024 com mapeamento de países para continentes"
+    },
+    "medals_integrated": {
+        "description": "Dataset integrado de medalhas olímpicas processado para análises continentais",
+        "source": "Processamento e limpeza de medals_integrated_1896_2024.parquet"
+    }
+}
+
+def process_datasets(source_path, metadata_path, datasets_info, file_path_prefix, section_name):
+    """Processa datasets de uma pasta específica"""
+    
+    print(f'\n📂 Processando {section_name}')
+    print('='*60)
+    
+    # Listar todos os parquets
+    parquet_files = sorted(source_path.glob('*.parquet'))
+    print(f'\n📊 Total de arquivos Parquet em {section_name}: {len(parquet_files)}')
+    
+    if len(parquet_files) == 0:
+        print(f'   Nenhum arquivo parquet encontrado em {source_path}')
+        return 0, 0
+    
+    # Verificar quais já têm metadados
+    existing_metadata = set(f.stem.replace('_metadata', '') for f in metadata_path.glob('*_metadata.json'))
+    print(f'📄 Metadados existentes: {len(existing_metadata)}')
+    
+    # Gerar metadados para os que faltam
+    missing_count = 0
+    created_count = 0
+    
+    for parquet_file in parquet_files:
+        dataset_name = parquet_file.stem
+        metadata_file = metadata_path / f'{dataset_name}_metadata.json'
+        
+        if dataset_name in existing_metadata:
+            print(f'✓ {dataset_name} - metadados já existem')
+            continue
+        
+        missing_count += 1
+        
+        # Obter informações do dataset
+        if dataset_name in datasets_info:
+            info = datasets_info[dataset_name]
+            print(f'\n📝 Gerando: {dataset_name}_metadata.json')
+            
+            try:
+                metadata = generate_metadata(
+                    parquet_file,
+                    info['description'],
+                    info['source'],
+                    file_path_prefix
+                )
+                
+                # Salvar JSON
+                with open(metadata_file, 'w', encoding='utf-8') as f:
+                    json.dump(metadata, f, indent=2, ensure_ascii=False)
+                
+                print(f'   ✅ Criado com sucesso!')
+                print(f'   Dimensões: {metadata["dimensions"]["rows"]} linhas x {metadata["dimensions"]["columns"]} colunas')
+                created_count += 1
+                
+            except Exception as e:
+                print(f'   ❌ Erro: {e}')
+        else:
+            print(f'⚠️  {dataset_name} - sem descrição definida (pulando)')
+    
+    return missing_count, created_count
+
 print('='*80)
 print('GERANDO METADADOS JSON PARA ARQUIVOS PARQUET')
 print('='*80)
 
-# Listar todos os parquets
-parquet_files = sorted(GOLD_PATH.glob('*.parquet'))
-print(f'\n📊 Total de arquivos Parquet: {len(parquet_files)}')
+# Processar diferentes seções
+total_missing = 0
+total_created = 0
+total_files = 0
 
-# Verificar quais já têm metadados
-existing_metadata = set(f.stem.replace('_metadata', '') for f in METADATA_PATH.glob('*_metadata.json'))
-print(f'📄 Metadados existentes: {len(existing_metadata)}')
+# 1. Processar Gold/Parte2
+missing, created = process_datasets(
+    GOLD_PATH, 
+    METADATA_PATH_PARTE2, 
+    gold_datasets_info, 
+    "gold/parte2",
+    "GOLD/PARTE2"
+)
+total_missing += missing
+total_created += created
+total_files += len(list(GOLD_PATH.glob('*.parquet')))
 
-# Gerar metadados para os que faltam
-missing_count = 0
-created_count = 0
+# 2. Processar Bronze/Parte1
+missing, created = process_datasets(
+    BRONZE_PATH_PARTE1, 
+    METADATA_PATH_PARTE1, 
+    bronze_datasets_info, 
+    "bronze/parte1",
+    "BRONZE/PARTE1"
+)
+total_missing += missing
+total_created += created
+total_files += len(list(BRONZE_PATH_PARTE1.glob('*.parquet')))
 
-for parquet_file in parquet_files:
-    dataset_name = parquet_file.stem
-    metadata_file = METADATA_PATH / f'{dataset_name}_metadata.json'
-    
-    if dataset_name in existing_metadata:
-        print(f'✓ {dataset_name} - metadados já existem')
-        continue
-    
-    missing_count += 1
-    
-    # Obter informações do dataset
-    if dataset_name in datasets_info:
-        info = datasets_info[dataset_name]
-        print(f'\n📝 Gerando: {dataset_name}_metadata.json')
-        
-        try:
-            metadata = generate_metadata(
-                parquet_file,
-                info['description'],
-                info['source']
-            )
-            
-            # Salvar JSON
-            with open(metadata_file, 'w', encoding='utf-8') as f:
-                json.dump(metadata, f, indent=2, ensure_ascii=False)
-            
-            print(f'   ✅ Criado com sucesso!')
-            print(f'   Dimensões: {metadata["dimensions"]["rows"]} linhas x {metadata["dimensions"]["columns"]} colunas')
-            created_count += 1
-            
-        except Exception as e:
-            print(f'   ❌ Erro: {e}')
-    else:
-        print(f'⚠️  {dataset_name} - sem descrição definida (pulando)')
+# 3. Processar Bronze/Parte2
+missing, created = process_datasets(
+    BRONZE_PATH_PARTE2, 
+    METADATA_PATH_PARTE2, 
+    bronze_datasets_info, 
+    "bronze/parte2",
+    "BRONZE/PARTE2"
+)
+total_missing += missing
+total_created += created
+total_files += len(list(BRONZE_PATH_PARTE2.glob('*.parquet')))
 
 print('\n' + '='*80)
-print('RESUMO')
+print('RESUMO GERAL')
 print('='*80)
-print(f'Total de arquivos Parquet: {len(parquet_files)}')
-print(f'Metadados existentes: {len(existing_metadata)}')
-print(f'Metadados faltando: {missing_count}')
-print(f'Metadados criados agora: {created_count}')
-print(f'Total de metadados agora: {len(existing_metadata) + created_count}')
+print(f'Total de arquivos Parquet: {total_files}')
+print(f'Metadados faltando: {total_missing}')
+print(f'Metadados criados agora: {total_created}')
 
-if created_count == missing_count:
+if total_created == total_missing:
     print('\n✅ TODOS OS METADADOS FORAM CRIADOS COM SUCESSO!')
 else:
-    print(f'\n⚠️  Ainda faltam {missing_count - created_count} metadados')
+    print(f'\n⚠️  Ainda faltam {total_missing - total_created} metadados')
 
 print('='*80)

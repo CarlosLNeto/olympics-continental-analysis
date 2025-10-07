@@ -1,0 +1,86 @@
+{
+  "dataset_name": "medals_integrated",
+  "description": "Dataset integrado de medalhas olímpicas processado para análises continentais",
+  "source": "Processamento e limpeza de medals_integrated_1896_2024.parquet",
+  "creation_date": "2025-10-06 16:20:27",
+  "file_path": "bronze/parte2/medals_integrated.parquet",
+  "format": "parquet",
+  "dimensions": {
+    "rows": 46992,
+    "columns": 8
+  },
+  "columns": [
+    "country_noc",
+    "medal",
+    "event_discipline",
+    "athlete_sex",
+    "game_year",
+    "game_season",
+    "continent",
+    "athlete_id"
+  ],
+  "dtypes": {
+    "country_noc": "object",
+    "medal": "object",
+    "event_discipline": "object",
+    "athlete_sex": "object",
+    "game_year": "int64",
+    "game_season": "object",
+    "continent": "object",
+    "athlete_id": "object"
+  },
+  "missing_values": {
+    "country_noc": 0,
+    "medal": 0,
+    "event_discipline": 0,
+    "athlete_sex": 1,
+    "game_year": 0,
+    "game_season": 0,
+    "continent": 0,
+    "athlete_id": 0
+  },
+  "memory_usage_mb": 17.79914665222168,
+  "index_name": null,
+  "sample_values": {
+    "country_noc": {
+      "0": "USA",
+      "1": "ITA",
+      "2": "USA"
+    },
+    "medal": {
+      "0": "GOLD",
+      "1": "GOLD",
+      "2": "GOLD"
+    },
+    "event_discipline": {
+      "0": "Skeleton",
+      "1": "Skeleton",
+      "2": "Skeleton"
+    },
+    "athlete_sex": {
+      "0": "Male",
+      "1": "Male",
+      "2": "Male"
+    },
+    "game_year": {
+      "0": 1928,
+      "1": 1948,
+      "2": 2002
+    },
+    "game_season": {
+      "0": "Winter",
+      "1": "Winter",
+      "2": "Winter"
+    },
+    "continent": {
+      "0": "Américas",
+      "1": "Europa",
+      "2": "Américas"
+    },
+    "athlete_id": {
+      "0": "86530",
+      "1": "84107",
+      "2": "101695"
+    }
+  }
+}
